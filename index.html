@@ -1,1432 +1,299 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Te encontrei</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Aplicativo Te encontei</title>
+  
+  <style>
+
+    /* ===== DESATIVAR SELEÇÃO DE TEXTO ===== */
+    body{
+      -webkit-user-select:none;
+      user-select:none;
+    }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      background-color:#f0f4f8;
+    }
 
 
-<style>
-
-/* ===== DESATIVAR SELEÇÃO DE TEXTO ===== */
-body{
-  -webkit-user-select:none;
-  user-select:none;
+/* ===== BARRA SUPERIOR ===== */
+.barra-topo{
+  text-align:left;
+  background-color:#F4A28C;   /* ===== COR BARRA SUPERIOR ===== */
+  padding:20px;
+  margin-bottom:0;
+  border-bottom:2px solid #e0e0e0;
+  box-sizing:border-box;
 }
-/* ===== DESATIVAR SELEÇÃO DE TEXTO ===== */
 
-/* ===== NOME / ID / MENU — RODAPÉ ===== */
-.footer{
-  position:fixed;
-  bottom:38px;
-  left:0;
-  width:100%;
-  text-align:center;
-  font-size:13px;
-  color:#000000;
-  opacity:0.7;
-}
-/* ===== NOME / ID / MENU — RODAPÉ ===== */
-
-body{
+.barra-topo h1{
   margin:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  background-repeat:no-repeat;
-  background-position:center;
-  background-size:cover;
-}
-
-.container{
-  text-align:center;
-  width:100%;
-  max-width:420px;
-  padding:00px;
-  transform:translateY(160px); /* 📌 POSIÇÃO VERTICAL, DATA/HORA para cima ou baixo */
-}
-
-
-/* ✅ ===== Texto TÍTULO DO CARD — INDEX ===== */
-
-.titulo-data-hora-index{
-  text-align:center;
-  font-family:'Cormorant Garamond', serif;
-  font-size:30px;
-  font-weight:bold;
-  color:#000000;  /* 📌 Te encontei */
-  margin-bottom:10px;
-}
-
-/* ===== 1 ANO — INDEX ===== */
-
-.tempo-ano-index{
-  text-align:center;
-  font-family:'Cormorant Garamond', serif;
-  font-size:32px;
-  font-weight:bold;
-  color:#000000;   /* 📌 Anos */
-  margin-bottom:10px;
-}
-
-/* ===== TEMPO — MESES / DIAS — INDEX ===== */
-
-.tempo-meses-dias-index{
-  text-align:center;
-  font-family:'Cormorant Garamond', serif;
-  font-size:17px;
-  font-weight:normal;
-  color:#000000;   /* 📌 Messes/dias */
-  margin:3px 0;
-}
-
-
-/* ===== TEMPO — HORAS / MINUTOS — INDEX ===== */
-
-.tempo-horas-minutos-index{
-  text-align:center;
-  font-family:'Cormorant Garamond', serif;
-  font-size:12px;
-  font-weight:normal;
-  color:#000000;   /* 📌 horas/minutos */
-  margin:3px 0;
-}
-/* ===== fim DO CARD — INDEX ===== */
-
-
-/* 🎨 CSS inicio Nome ID  MENU LATERAL */
-/* MENU NO RODAPÉ */
-.footer{
-  position:fixed;
-  bottom: 12px;  /* ===== sobe ou desse a linha na página ===== */
-  left:0;
-  width:100%;
-  text-align:center;
-  font-size:13px;
-  color:#000000; /* 📌 nome ID e os 3 pontinos */
-  opacity:0.7;
-}
-
-
-/* 3 pontinhos 1 */
-.menu-hamburguer{
-  margin-left:15px;
-  cursor:pointer;
-  font-size:20px; /* 📌 Tamanho fonte */
-  letter-spacing:2px;
-}
-
-/* 3 pontinhos 2*/
-.menu-hamburguer{
-  text-decoration:none;
-  color:inherit;
-}
-/* fim CSS Nome ID  MENU LATERAL */
-
-
-/* ===== FRASE NA INDEX ===== */
-#frase-index{
-  width:90%;
-  max-width:320px;
-  margin:20px auto;
-
-  color:#000000;   /* 📌 Minha prova de ... */
-  font-family:'Cormorant Garamond', serif;
-  font-size:15px;
-  font-weight:400;
-
-  text-align:center;
-  line-height:1.3;
-
-  overflow-wrap:break-word;
-  word-wrap:break-word;
-}
-
-
-/* ===== NOME DA PESSOA AMADA NA INDEX ===== */
-#nome-amado-index{
-  position:fixed;
-
-  top:10px;      /* 📌 TOPO DA PÁGINA */
-  left:10px;     /* 📌 ESQUERDA DA PÁGINA */
-
-  font-family:'Cormorant Garamond', serif;
-  font-size:15px;
-
-  color:#000000;   /* 📌 nome da pessoas */
-
+  font-size:20px;
+  color:#ffffff;   /* ===== COR DO TÍTULO ===== */
   text-align:left;
 }
+/* ===== BARRA SUPERIOR ===== */
 
-/* 📌 ===== CORAÇÃO PULSANTE ===== */
-#nome-amado-index .coracao{
-  color:#FF0000;
+/* ===== LINHA BRANCA SEPARADORA ===== */
+.separador-barra{
+  margin:0 0 20px;
+  border:0;
+  border-top:3px solid #F4D1B1;   /* ===== COR DA LINHA ===== */
 }
-
-.coracao{
-  display:inline-block;
-  animation:pulsar-coracao 1.2s ease-in-out infinite;
-}
-
-@keyframes pulsar-coracao{
-  0%, 100%{
-    transform:scale(1);
-  }
-
-  50%{
-    transform:scale(1.20); /* 📌 ===== velocidade */
-  }
-}
+/* ===== LINHA BRANCA SEPARADORA ===== */
 
 
-/* ✅ ===== COR DOS TEXTOS NO FUNDO PERSONALIZADO — INDEX ===== */
-body.fundo-personalizado .titulo-data-hora-index,
-body.fundo-personalizado .tempo-ano-index,
-body.fundo-personalizado .tempo-meses-dias-index,
-body.fundo-personalizado .tempo-horas-minutos-index{
-  color:#ffffff;
-}
-
-body.fundo-personalizado .footer,
-body.fundo-personalizado #frase-index,
-body.fundo-personalizado #nome-amado-index{
-  color:#ffffff;
-}
-/* ===== COR DOS TEXTOS NO FUNDO PERSONALIZADO — INDEX ===== */
-
-
-/* ✅ ===== BARRA INFERIOR — INDEX ===== */
-.barra-inferior{
+/* ===== BOTÃO VOLTAR ===== */
+.botao-voltar{
   position:fixed;
-  bottom:10px;  /* ===== Margem linha inferior ===== */
-  left:15%;
-  width:70%;
-  height:1px;    /* <-- aumentar esse valor deixa a barra mais grossa */
-  background-color:#7533ef1a;   /* cor linha azul do fundo */
-  opacity:0.5;
+  top:15px;
+  right:15px;
+
+  text-decoration:none;
+  color:#ffffff;  /* ===== COR VOLTAR ===== */
+  font-size:20px;
+}
+/* ===== BOTÃO VOLTAR ===== */
+ 
+   
+    /* ===== CONTEÚDO ===== */
+    .conteudo-sobre{
+      width:90%;
+      max-width:650px;
+      margin:25px auto 50px;
+      box-sizing:border-box;
+      color:#3A2530;
+      font-family:Arial, sans-serif;
+      line-height:1.6;
+    }
+
+    .conteudo-sobre h2{
+      font-family:'Cormorant Garamond', serif;
+      font-size:18px; /* ===== Sobre o Te encontei ===== */
+      color:#F4A28C;   /* ===== cor todos os titulos frase ===== */
+      margin:25px 0 10px;
+    }
+
+    .conteudo-sobre h3{
+      font-family:'Cormorant Garamond', serif;
+      font-size:15px;  /* ===== Onde uma historia começa ===== */
+      color:#3A2530;
+      margin:22px 0 8px;
+    }
+
+.conteudo-sobre h2 {
+  font-size: 15px; /* ===== Um aplicativo feito pra vc ===== */
 }
 
-/* ===== BARRA INFERIOR — FUNDO PERSONALIZADO ===== */
+    .conteudo-sobre p{
+      font-size:15px;  /* ===== fonte dodo TEXTO ===== */
+      margin:0 0 15px;
+    }
 
-body.fundo-personalizado .barra-inferior{
-  background-color:#ffffff;
-}
+    .destaque{
+      font-family:'Cormorant Garamond', serif;
+      font-size:15px;    /* ===== Olha tudo que já vivemos? ===== */
+      text-align:center;
+      margin:30px 0;
+      color:#F4A28C;
+    }
 
-
-/* ===== inicio - CSS DO Calendário ===== */
-
-/* ===== inicio - CSS DO Calendário ===== */
-/* Botão do calendário */
-.cal-icon-btn {
-  position: fixed;
-  top: 0;
-  right: 10px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #555;
-  z-index: 1001;
-}
-
-.cal-icon-btn svg {
-  width: 22px;
-  height: 22px;
-}
-
-/* Fundo escuro */
-.cal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-  z-index: 1000;
-}
-
-.cal-overlay.open {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Painel: meia tela */
-.cal-panel {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  max-height: 50vh;
-  overflow-y: auto;
-  background: #fff;
-  border-radius: 0 0 16px 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-  transform: translateY(-100%);
-  transition: transform 0.25s ease;
-  padding: 16px;
-}
-
-.cal-overlay.open .cal-panel {
-  transform: translateY(0);
-}
-
-/* Cabeçalho */
-.cal-panel-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  margin-bottom: 16px;
-}
-
-.cal-panel-header button {
-  background: none;
-  border: none;
-  font-size: 24px;
-  padding: 6px 12px;
-  cursor: pointer;
-  color: #333;
-}
-
-.cal-panel-title {
-  min-width: 125px;
-  text-align: center;
-  font-size: 18px;
-  font-weight: 600;
-  color: #222;
-}
-
-/* Meses */
-.cal-month-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-}
-
-.cal-month-btn {
-  padding: 12px 0;
-  border-radius: 8px;
-  border: 1px solid #eee;
-  background: #f7f7f7;
-  color: #333;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  text-transform: capitalize;
-}
-
-.cal-month-btn.selected {
-  background: #7533ef;
-  color: white;
-  border-color: #7533ef;
-}
-
-/* Dias da semana e dias */
-.cal-weekdays,
-.cal-days-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-}
-
-.cal-weekdays {
-  margin-bottom: 6px;
-}
-
-.cal-weekdays span {
-  text-align: center;
-  font-size: 11px;
-  font-weight: 600;
-  color: #888;
-  padding: 4px 0;
-}
-
-.cal-day-btn {
-  width: 100%;
-  aspect-ratio: 1;
-  max-height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  border-radius: 50%;
-  background: transparent;
-  color: #333;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.cal-day-btn:hover {
-  background: #f0eaff;
-}
-
-.cal-day-btn.other-month {
-  color: #bbb;
-  cursor: default;
-}
-
-.cal-day-btn.today {
-  background: #7533ef;
-  color: white;
-  font-weight: 700;
-}
+    .slogan{
+      font-family:'Cormorant Garamond', serif;
+      font-size:12px;    /* =====Te encontei +Q que um buqu  ===== */
+      font-weight:bold;
+      text-align:center;
+      color:#F4A28C;
+      margin:25px 0 15px; /* ===== Distancia em relação a inha de cima===== */
+    }
 
 
 
 
-.cal-day-btn.selected-day {
-  outline: 2px solid #7533ef;
-  outline-offset: 1px;
-}
 
-
-/* Informações e botão voltar */
-.cal-selected-info {
-  margin-top: 12px;
-  text-align: center;
-  font-size: 13px;
-  color: #666;
-}
-
-.cal-back-btn {
-  display: block;
-  margin: 12px auto 0;
-  padding: 8px 14px;
-  background: #f7f7f7;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  color: #333;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-@media (max-width: 360px) {
-  .cal-panel {
-    padding: 12px;
-  }
-
-  .cal-day-btn {
-    font-size: 12px;
-    max-height: 36px;
-  }
-
-  .cal-month-btn {
-    padding: 10px 0;
-    font-size: 13px;
-  }
-}
-/* ===== FIM CSS DO Calendario ===== */
-/* ===== FIM CSS DO Calendario ===== */
-
-</style>
-
-
-<!-- ✅ MENU 3 PONTINHOS RODAPÉ -->
-<div class="footer">
-  <span id="user-info">Nome | ID: aguardando...</span>
-  <a href="configuracao.html" class="menu-hamburguer">•••</a>
-</div>
-
+  </style>
 
 </head>
+
 <body>
 
+  <!-- ===== BARRA SUPERIOR ===== -->
+  <div class="barra-topo">
+    <h1>Aplicatico Te encontei</h1>
+  </div>
 
-<!-- ===== Parte 2 - Calendario: cabeçalho do app com o ícone no lugar certo ===== -->
-<button class="cal-icon-btn" id="calOpenBtn" aria-label="Abrir calendário">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-       stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="3" y="4.5" width="18" height="16" rx="2"></rect>
-    <line x1="3" y1="9.5" x2="21" y2="9.5"></line>
-    <line x1="8" y1="2.5" x2="8" y2="6.5"></line>
-    <line x1="16" y1="2.5" x2="16" y2="6.5"></line>
-  </svg>
-</button>
+<!-- ===== SEPARADOR ===== -->
+<hr class="separador-barra">
+<!-- ===== SEPARADOR ===== -->
 
-<div class="cal-overlay" id="calOverlay">
-  <div class="cal-panel">
+  <!-- ===== CONTEÚDO DA PÁGINA ===== -->
 
-    <div class="cal-panel-header">
-      <button id="calPrev" aria-label="Anterior">‹</button>
-      <span class="cal-panel-title" id="calTitle"></span>
-      <button id="calNext" aria-label="Próximo">›</button>
+  <div class="conteudo-sobre">
+
+    <h2>Sobre o Te Encontrei ❤️</h2>
+
+    <h3>Onde uma história de amor ganha um lugar só dela</h3>
+
+    <p>
+      <strong>Te Encontrei</strong> nasceu de uma ideia simples, mas especial:
+      criar um espaço para guardar, acompanhar e celebrar uma história que
+      merece ser lembrada todos os dias.
+    </p>
+
+    <p>
+      Não é apenas sobre registrar uma data. É sobre lembrar quando tudo
+      começou, quem faz parte dessa história, quanto tempo já passou e tudo
+      aquilo que torna esse relacionamento único.
+    </p>
+
+
+    <h2>💕 Um aplicativo feito para vocês</h2>
+
+    <p>
+      No Te Encontrei, cada detalhe pode ser personalizado para representar
+      o casal.
+    </p>
+
+    <p>
+      Você pode registrar o perfil, escolher uma imagem, escrever uma frase
+      especial, definir a data importante e acompanhar a passagem do tempo.
+    </p>
+
+    <p>
+      O aplicativo também acompanha o momento vivido pelo casal:
+      <strong>Namorados → Noivos → Casados</strong>.
+    </p>
+
+    <p>
+      E essa escolha participa da experiência visual do aplicativo, tornando
+      cada fase mais presente e significativa.
+    </p>
+
+
+    <h2>⏳ O tempo também conta uma história</h2>
+
+    <p>
+      Uma data importante pode parecer apenas um número.
+      Mas quando o aplicativo mostra os dias, meses e anos que passaram desde
+      aquele momento, a data ganha outro significado.
+    </p>
+
+    <p>
+      É uma maneira simples de olhar para trás e perceber:
+    </p>
+
+    <div class="destaque">
+      “Olha tudo o que já vivemos juntos.”
     </div>
 
-    <!-- Tela de meses -->
-    <div id="calMonthView">
-      <div class="cal-month-grid" id="calMonthGrid"></div>
-    </div>
 
-    <!-- Tela de dias -->
-    <div id="calDayView" hidden>
+    <h2>💍 Pequenos detalhes que fazem diferença</h2>
 
-      <div class="cal-weekdays">
-        <span>DOM</span>
-        <span>SEG</span>
-        <span>TER</span>
-        <span>QUA</span>
-        <span>QUI</span>
-        <span>SEX</span>
-        <span>SÁB</span>
-      </div>
+    <p>
+      O Te Encontrei foi pensado para que a experiência não seja apenas
+      funcional.
+    </p>
 
-      <div class="cal-days-grid" id="calDaysGrid"></div>
+    <p>
+      As alianças, os efeitos visuais, as frases, as imagens e as informações
+      do relacionamento trabalham juntos para criar uma experiência mais
+      pessoal.
+    </p>
 
-      <div class="cal-selected-info" id="calSelectedInfo"></div>
+    <p>
+      Cada elemento tem um propósito:
+      <strong>fazer o aplicativo parecer de vocês.</strong>
+    </p>
 
-      <button class="cal-back-btn" id="calBackBtn">
-        ← Voltar aos meses
-      </button>
 
-    </div>
-  </div>
+    <h2>📱 Feito para acompanhar a vida real</h2>
+
+    <p>
+      O aplicativo foi pensado para ser simples de usar e fácil de
+      personalizar.
+    </p>
+
+    <p>
+      As principais funções ficam organizadas em uma área de configurações,
+      onde cada parte da experiência pode ser ajustada conforme a história
+      do casal.
+    </p>
+
+    <p>
+      Assim, o Te Encontrei pode acompanhar diferentes momentos da vida e
+      continuar fazendo sentido à medida que a história evolui.
+    </p>
+
+
+    <h2>❤️ Mais do que um aplicativo</h2>
+
+    <p>
+      Existem aplicativos para organizar tarefas, guardar informações e
+      acompanhar números.
+    </p>
+
+    <p>
+      O Te Encontrei nasceu para fazer algo diferente:
+      <strong>guardar significado.</strong>
+    </p>
+
+    <p>
+      Porque uma fotografia pode registrar um momento.
+      Uma data pode registrar um começo.
+      Uma frase pode registrar um sentimento.
+    </p>
+
+    <p>
+      Mas quando tudo isso se reúne em um só lugar, nasce uma pequena
+      representação da história de duas pessoas.
+    </p>
+
+
+    <h2>✨ Te Encontrei</h2>
+
+    <p>
+      O amor começa com um encontro.
+    </p>
+
+    <p>
+      Depois vêm as conversas, os momentos, os planos, as conquistas e todas
+      aquelas pequenas coisas que passam a fazer parte da vida.
+    </p>
+
+    <p>
+      O Te Encontrei existe para acompanhar essa caminhada.
+    </p>
+
+    <p>
+      Porque encontrar alguém especial é apenas o começo.
+    </p>
+
+    <p>
+      O mais bonito é tudo aquilo que vocês constroem depois de se encontrar.
+    </p>
+
+
+<div class="slogan">
+  Surpreenda a pessoa que você ama<br>
+  “Te Encontrei é +Q um buquê de flores todos os dias”
 </div>
-<!-- ===== Calendario: cabeçalho do app com o ícone no lugar certo ===== -->
 
 
-
-<!-- ✅ Pessoa amada -->
-<div id="nome-amado-index"></div>
-
-
-<!-- ===== INICIO CARD DO HTML — INDEX ===== -->
-
-<div class="overlay"></div>
-<div class="container" id="app">
-
-  <!-- ===== CARD DATA / HORA — INDEX ===== -->
-
-<div class="card-data-hora-index">
-
-  <div class="titulo-data-hora-index">
-    Te encontrei
   </div>
+  
 
-  <div class="tempo-ano-index">
-    0 Anos
-  </div>
 
-  <div class="tempo-meses-dias-index">
-    0 meses · 0 Dias
-  </div>
 
-  <div class="tempo-horas-minutos-index">
-    0 Horas · 0 Minutos
-  </div>
+  <!-- ===== BOTÃO VOLTAR ===== -->
+  <a href="configuracao.html" class="botao-voltar">•••</a>
 
-</div>
-
-<!-- ===== FRASE NA INDEX ===== -->
-
-<div id="frase-index"></div>
-
-  <!-- ===== FIM DO CARD ===== -->
-</div>
-  <!-- ===== FIM DO CARD ===== -->
-
-
-<!-- ===== BARRA INFERIOR ===== -->
-<div class="barra-inferior"></div>
-<!-- ===== FIM DO HTML — INDEX ===== -->
-
-
-
-
-<!-- ===== INICIO DOS SCRIPTs ===== -->
-<script>
-/* ===== MOSTRAR PERFIL NO RODAPÉ ===== */
-
-const usuario = JSON.parse(localStorage.getItem("perfil"));
-
-if (usuario) {
-  document.getElementById("user-info").textContent =
-    usuario.nome + " | ID: " + usuario.userID;
-}
-</script>
-
-
-<script>
-/* ✅===== INICIO > MOSTRAR CONTAGEM NA INDEX ===== 1 -(DATA/HORA) */
-
-function atualizarContagemIndex(){
-
-  const dataSalva = localStorage.getItem("data-inicio");
-  const horaSalva = localStorage.getItem("hora-inicio");
-
-  if(!dataSalva) return;
-
-  const [year, month, day] =
-    dataSalva.split("-").map(Number);
-
-  let hours = 0;
-  let minutes = 0;
-
-  if(horaSalva){
-    [hours, minutes] =
-      horaSalva.split(":").map(Number);
-  }
-
-  const specialDate = new Date(
-    year,
-    month - 1,
-    day,
-    hours,
-    minutes
-  );
-
-  const now = new Date();
-
-  function addMonths(date, months){
-
-    const d = new Date(date);
-    const day = d.getDate();
-
-    d.setDate(1);
-    d.setMonth(d.getMonth() + months);
-
-    const lastDay = new Date(
-      d.getFullYear(),
-      d.getMonth() + 1,
-      0
-    ).getDate();
-
-    d.setDate(Math.min(day, lastDay));
-
-    return d;
-  }
-
-  let totalMonths =
-    (now.getFullYear() - specialDate.getFullYear()) * 12 +
-    (now.getMonth() - specialDate.getMonth());
-
-  let anniversary =
-    addMonths(specialDate, totalMonths);
-
-  if(anniversary > now){
-    totalMonths--;
-    anniversary =
-      addMonths(specialDate, totalMonths);
-  }
-
-  const years =
-    Math.floor(totalMonths / 12);
-
-  const months =
-    totalMonths % 12;
-
-  let remaining =
-    now - anniversary;
-
-  const days =
-    Math.floor(
-      remaining / (1000 * 60 * 60 * 24)
-    );
-
-  remaining %= (1000 * 60 * 60 * 24);
-
-  const hoursNow =
-    Math.floor(
-      remaining / (1000 * 60 * 60)
-    );
-
-  remaining %= (1000 * 60 * 60);
-
-  const minutesNow =
-    Math.floor(
-      remaining / (1000 * 60)
-    );
-
-
-
-/* ===== ENVIA PARA O CARD DA INDEX ===== */
-
-document.querySelector(".tempo-ano-index").innerText =
-  years + (years === 1 ? " Ano" : " Anos");
-
-const mesesDias =
-  document.querySelector(".tempo-meses-dias-index");
-
-const horasMinutos =
-  document.querySelector(".tempo-horas-minutos-index");
-
-mesesDias.innerText =
-  months + (months === 1 ? " mês" : " meses") +
-  " · " +
-  days + (days === 1 ? " Dia" : " Dias");
-
-horasMinutos.innerText =
-  hoursNow + (hoursNow === 1 ? " Hora" : " Horas") +
-  " · " +
-  minutesNow + (minutesNow === 1 ? " Minuto" : " Minutos");
-}
-
-
-/* ===== PRIMEIRA ATUALIZAÇÃO ===== */
-
-atualizarContagemIndex();
-
-
-/* ===== ATUALIZA A CADA MINUTO ===== */
-
-setInterval(atualizarContagemIndex, 60000);
-/* ✅===== FIM > MOSTRAR CONTAGEM NA INDEX ===== 1-(DATA/HORA) */
-</script>
-
-
-
-
-
-<script>
-/*  ✅===== MOSTRAR FRASE NA INDEX ===== 2 -(FRASE) */
-
-const fraseIndex =
-  document.getElementById("frase-index");
-
-const fraseSalvaIndex =
-  localStorage.getItem("fraseUsuario");
-
-if(fraseSalvaIndex){
-
-  fraseIndex.innerText =
-    fraseSalvaIndex;
-
-}
-/*  ✅===== fim MOSTRAR FRASE NA INDEX ===== 2 -(FRASE) */
-</script>
-
-
-
-<script>
-/*  ✅===== MOSTRAR PESSOA AMADA NA INDEX ===== 3 */
-
-const nomeAmadoIndex =
-  document.getElementById("nome-amado-index");
-
-const nomeAmadoSalvo =
-  localStorage.getItem("nomePessoaAmada");
-
-if(nomeAmadoSalvo){
-
-  nomeAmadoIndex.innerHTML =
-    '<span class="coracao">❤️</span> ' +
-    nomeAmadoSalvo;
-
-}
-/*  ✅===== fim MOSTRAR PESSOA AMADA NA INDEX ===== 3 */
-</script>
-
-
-
-<script>
-/* ✅ ===== SCRIPT — IMAGEM DE FUNDO ===== 4 */
-
-const imagemPadrao = "imagens/fundo-tela.png";
-
-const imagemPersonalizada =
-  localStorage.getItem("imagemPersonalizada");
-
-const usarImagemPersonalizada =
-  localStorage.getItem("usarImagemPersonalizada");
-
-if(
-  usarImagemPersonalizada === "true" &&
-  imagemPersonalizada
-){
-
-  document.body.style.backgroundImage =
-    `url("${imagemPersonalizada}")`;
-
-  document.body.classList.add(
-    "fundo-personalizado"
-  );
-
-}else{
-
-  document.body.style.backgroundImage =
-    `url("${imagemPadrao}")`;
-
-  document.body.classList.remove(
-    "fundo-personalizado"
-  );
-
-}
-
-/* ✅ ===== fim SCRIPT — IMAGEM DE FUNDO ===== 4 */
-</script>
-
-
-
-<script>
-/* ✅ ===== MOSTRAR NOME + ID NO RODAPÉ 1 ===== */
-
-const pedidoPerfil = indexedDB.open("MeuApp", 1);
-
-pedidoPerfil.onsuccess = function(event) {
-
-  const banco = event.target.result;
-
-  const transacao = banco.transaction(["perfil"], "readonly");
-  const store = transacao.objectStore("perfil");
-
-  const consulta = store.get("usuario");
-
-  consulta.onsuccess = function() {
-
-    const usuario = consulta.result;
-
-    if (usuario) {
-      document.getElementById("user-info").textContent =
-        usuario.nome + " | ID: " + usuario.userID;
-    }
-
-  };
-};
-/* ✅ ===== MOSTRAR NOME + ID NO RODAPÉ 1 ===== */
-</script>
-
-
-
-<script>
-/* ✅ ===== inicio — ALIANÇAS REAIS DE NAMORADOS ===== */
-
-window.addEventListener("load", function () {
-
-    const status =
-        localStorage.getItem("statusRelacionamento");
-
-    if (status !== "Namorados") return;
-
-
-    function createRing(size, color, shadow) {
-
-        const ring = document.createElement("div");
-
-        ring.style.width = size + "px";
-        ring.style.height = size + "px";
-        ring.style.borderRadius = "50%";
-        ring.style.position = "fixed";
-        ring.style.border = "2px solid " + color;
-        ring.style.boxShadow = shadow;
-        ring.style.background = "rgba(255,255,255,0.08)";
-        ring.style.pointerEvents = "none";
-        ring.style.zIndex = "99999";
-
-        document.body.appendChild(ring);
-
-        return ring;
-    }
-
-
-    const size = 42;
-
-    const ring1 = createRing(
-        size,
-        "#E2E2E2",
-        "0 0 10px rgba(255,255,255,0.45)"
-    );
-
-    const ring2 = createRing(
-        size,
-        "#E2E2E2",
-        "0 0 10px rgba(255,255,255,0.45)"
-    );
-
-
-    let x = (window.innerWidth - size) / 2;
-    let y = (window.innerHeight - size) / 2;
-
-    let vx = 0.8;
-    let vy = 0.8;
-
-    const spacing = 35;  // ✅ Espaço entre as alianças
-
-
-    function update() {
-
-        x += vx;
-        y += vy;
-
-        const maxX = window.innerWidth - size;
-        const maxY = window.innerHeight - size;
-
-
-        if (x <= spacing || x >= maxX - spacing) {
-            vx *= -1;
-        }
-
-        if (y <= 0 || y >= maxY) {
-            vy *= -1;
-        }
-
-
-        const t = Date.now();
-        const wave = Math.sin(t * 0.002) * 3;
-
-
-        ring1.style.left =
-            (x - spacing) + "px";
-
-        ring1.style.top =
-            (y + wave) + "px";
-
-        ring1.style.transform =
-            `rotate(${wave}deg)`;
-
-
-        ring2.style.left =
-            (x + spacing) + "px";
-
-        ring2.style.top =
-            (y + wave) + "px";
-
-        ring2.style.transform =
-            `rotate(${-wave}deg)`;
-
-
-        requestAnimationFrame(update);
-    }
-
-
-    update();
-
-});
-/* ✅ ===== fim — ALIANÇAS REAIS DE NAMORADOS ===== */
-</script>
-
-
-<script>
-/* ✅ ===== inicio — ALIANÇAS REAIS DE NOIVOS ===== */
-
-window.addEventListener("load", function () {
-
-    const status =
-        localStorage.getItem("statusRelacionamento");
-
-    if (status !== "Noivos") return;
-
-
-    function createRing(size, color, shadow) {
-
-        const ring = document.createElement("div");
-
-        ring.style.width = size + "px";
-        ring.style.height = size + "px";
-        ring.style.borderRadius = "50%";
-        ring.style.position = "fixed";
-        ring.style.pointerEvents = "none";
-
-        ring.style.border = "2px solid " + color;
-        ring.style.boxShadow = shadow;
-        ring.style.background = "rgba(255,255,255,0.08)";
-        ring.style.zIndex = "99999";
-
-        document.body.appendChild(ring);
-
-        return ring;
-    }
-
-
-    const size = 42;
-
-    const ring1 = createRing(
-        size,
-        "#f7d77a",
-        "0 0 10px rgba(255,215,0,0.35)"
-    );
-
-    const ring2 = createRing(
-        size,
-        "#f7d77a",
-        "0 0 10px rgba(255,215,0,0.35)"
-    );
-
-
-    let baseX = (window.innerWidth - size) / 2;
-    let baseY = (window.innerHeight - size) / 2;
-
-    let vx = 1.0;
-    let vy = 1.0;
-
-    const spacing = 35;  // ✅ Espaço entre as alianças
-
-
-    function update() {
-
-        const maxX = window.innerWidth - size;
-        const maxY = window.innerHeight - size;
-
-        baseX += vx;
-        baseY += vy;
-
-
-        if (
-            baseX <= spacing ||
-            baseX >= maxX - spacing
-        ) {
-            vx *= -1;
-        }
-
-
-        if (
-            baseY <= 0 ||
-            baseY >= maxY
-        ) {
-            vy *= -1;
-        }
-
-
-        const t = Date.now();
-        const float =
-            Math.sin(t * 0.002) * 5;
-
-
-        ring1.style.left =
-            (baseX - spacing) + "px";
-
-        ring1.style.top =
-            (baseY + float) + "px";
-
-
-        ring2.style.left =
-            (baseX + spacing) + "px";
-
-        ring2.style.top =
-            (baseY + float) + "px";
-
-
-        ring1.style.transform =
-            `rotate(${float}deg)`;
-
-        ring2.style.transform =
-            `rotate(${-float}deg)`;
-
-
-        requestAnimationFrame(update);
-    }
-
-
-    update();
-
-});
-/* ✅ ===== fim — ALIANÇAS REAIS DE NOIVOS ===== */
-</script>
-
-
-
-<script>
-/* ✅ ===== inicio — ALIANÇAS REAIS DE CASADOS ===== */
-
-window.addEventListener("load", function () {
-
-    const status =
-        localStorage.getItem("statusRelacionamento");
-
-    if (status !== "Casados") return;
-
-
-    function createRing(size, color, shadow) {
-
-        const ring = document.createElement("div");
-
-        ring.style.width = size + "px";
-        ring.style.height = size + "px";
-        ring.style.borderRadius = "50%";
-        ring.style.position = "fixed";
-        ring.style.pointerEvents = "none";
-        ring.style.border = "2px solid " + color;
-        ring.style.boxShadow = shadow;
-        ring.style.background = "rgba(255,255,255,0.08)";
-        ring.style.zIndex = "99999";
-
-        document.body.appendChild(ring);
-
-        return ring;
-    }
-
-
-    const size = 42;
-
-    const ring1 = createRing(
-        size,
-        "#f7d77a",
-        "0 0 10px rgba(255,215,0,0.35)"
-    );
-
-    const ring2 = createRing(
-        size,
-        "#f7d77a",
-        "0 0 10px rgba(255,215,0,0.35)"
-    );
-
-
-    const angle1 = -35;
-    const angle2 = 35;
-
-    const offsetX = 16;
-    const offsetY = 6;
-
-
-    let x = (window.innerWidth - size) / 2;
-    let y = (window.innerHeight - size) / 2;
-
-    let vx = 1.0;
-    let vy = 1.0;
-
-
-    function update() {
-
-        x += vx;
-        y += vy;
-
-
-        const maxX =
-            window.innerWidth - size - offsetX;
-
-        const maxY =
-            window.innerHeight - size - offsetY;
-
-
-        if (x <= 0 || x >= maxX) {
-            vx *= -1;
-        }
-
-
-        if (y <= 0 || y >= maxY) {
-            vy *= -1;
-        }
-
-
-        const t = Date.now();
-
-        const wave =
-            Math.sin(t * 0.002) * 3;
-
-        const front =
-            Math.sin(t * 0.0015) > 0;
-
-
-        if (front) {
-            ring1.style.zIndex = "99999";
-            ring2.style.zIndex = "99998";
-        } else {
-            ring1.style.zIndex = "99998";
-            ring2.style.zIndex = "99999";
-        }
-
-
-        ring1.style.left = x + "px";
-
-        ring1.style.top =
-            (y + wave) + "px";
-
-        ring1.style.transform =
-            `rotate(${angle1 + wave}deg)`;
-
-
-        ring2.style.left =
-            (x + offsetX) + "px";
-
-        ring2.style.top =
-            (y + offsetY - wave) + "px";
-
-        ring2.style.transform =
-            `rotate(${angle2 - wave}deg)`;
-
-
-        requestAnimationFrame(update);
-    }
-
-
-    update();
-
-});
-/* ✅ ===== fim — ALIANÇAS REAIS DE CASADOS ===== */
-</script>
-
-
-
-
-
-<!-- ===== SCRIPT calendario DO COMPONENTE (copiar, antes do </body>) ===== -->
-<script>
-(function () {
-  const overlay = document.getElementById('calOverlay');
-  const openBtn = document.getElementById('calOpenBtn');
-  const prevBtn = document.getElementById('calPrev');
-  const nextBtn = document.getElementById('calNext');
-  const title = document.getElementById('calTitle');
-
-  const monthView = document.getElementById('calMonthView');
-  const dayView = document.getElementById('calDayView');
-  const monthGrid = document.getElementById('calMonthGrid');
-  const daysGrid = document.getElementById('calDaysGrid');
-  const backBtn = document.getElementById('calBackBtn');
-  const selectedInfo = document.getElementById('calSelectedInfo');
-
-  const meses = [
-    'jan', 'fev', 'mar', 'abr', 'mai', 'jun',
-    'jul', 'ago', 'set', 'out', 'nov', 'dez'
-  ];
-
-  const nomesMeses = [
-    'Janeiro', 'Fevereiro', 'Março', 'Abril',
-    'Maio', 'Junho', 'Julho', 'Agosto',
-    'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-  ];
-
-  const hoje = new Date();
-
-  let mesSelecionado = hoje.getMonth();
-  let anoSelecionado = hoje.getFullYear();
-  let diaSelecionado = hoje.getDate();
-
-  let mesCalendario = mesSelecionado;
-  let anoCalendario = anoSelecionado;
-
-  let visualizacao = 'meses';
-
-  function render() {
-    if (visualizacao === 'meses') {
-      renderMeses();
-    } else {
-      renderDias();
-    }
-  }
-
-  /* =========================
-     MOSTRA OS MESES
-  ========================= */
-
-  function renderMeses() {
-    title.textContent = anoCalendario;
-
-    monthView.hidden = false;
-    dayView.hidden = true;
-
-    monthGrid.innerHTML = '';
-
-    meses.forEach(function (nome, indice) {
-      const btn = document.createElement('button');
-
-      btn.className = 'cal-month-btn';
-      btn.textContent = nome;
-
-      if (
-        indice === mesSelecionado &&
-        anoCalendario === anoSelecionado
-      ) {
-        btn.classList.add('selected');
-      }
-
-      /*
-       * IMPORTANTE:
-       * Aqui NÃO fechamos o calendário.
-       * Ao clicar, abrimos a tela dos dias.
-       */
-      btn.addEventListener('click', function () {
-        mesCalendario = indice;
-        mesSelecionado = indice;
-        anoSelecionado = anoCalendario;
-
-        diaSelecionado = 0;
-        visualizacao = 'dias';
-
-        render();
-      });
-
-      monthGrid.appendChild(btn);
-    });
-  }
-
-  /* =========================
-     MOSTRA OS DIAS
-  ========================= */
-
-  function renderDias() {
-    title.textContent =
-      nomesMeses[mesCalendario] + ' ' + anoCalendario;
-
-    monthView.hidden = true;
-    dayView.hidden = false;
-
-    daysGrid.innerHTML = '';
-
-    const primeiroDia = new Date(
-      anoCalendario,
-      mesCalendario,
-      1
-    ).getDay();
-
-    const totalDias = new Date(
-      anoCalendario,
-      mesCalendario + 1,
-      0
-    ).getDate();
-
-    const diasMesAnterior = new Date(
-      anoCalendario,
-      mesCalendario,
-      0
-    ).getDate();
-
-    // Dias do mês anterior.
-    for (let i = primeiroDia - 1; i >= 0; i--) {
-      criarDia(diasMesAnterior - i, true);
-    }
-
-    // Dias do mês selecionado.
-    for (let dia = 1; dia <= totalDias; dia++) {
-      criarDia(dia, false);
-    }
-
-    // Completa a última semana.
-    const totalCelulas = primeiroDia + totalDias;
-    const restantes = (7 - (totalCelulas % 7)) % 7;
-
-    for (let dia = 1; dia <= restantes; dia++) {
-      criarDia(dia, true);
-    }
-
-    if (diaSelecionado > 0) {
-      selectedInfo.textContent =
-        'Dia selecionado: ' +
-        diaSelecionado + '/' +
-        String(mesCalendario + 1).padStart(2, '0') +
-        '/' + anoCalendario;
-    } else {
-      selectedInfo.textContent = 'Selecione um dia';
-    }
-  }
-
-  function criarDia(dia, outroMes) {
-    const btn = document.createElement('button');
-
-    btn.className = 'cal-day-btn';
-    btn.textContent = dia;
-
-    if (outroMes) {
-      btn.classList.add('other-month');
-      btn.disabled = true;
-      daysGrid.appendChild(btn);
-      return;
-    }
-
-    const ehHoje =
-      dia === hoje.getDate() &&
-      mesCalendario === hoje.getMonth() &&
-      anoCalendario === hoje.getFullYear();
-
-    const ehSelecionado =
-      dia === diaSelecionado &&
-      mesCalendario === mesSelecionado &&
-      anoCalendario === anoSelecionado;
-
-    if (ehHoje) {
-      btn.classList.add('today');
-    }
-
-    if (ehSelecionado) {
-      btn.classList.add('selected-day');
-    }
-
-    btn.addEventListener('click', function () {
-      diaSelecionado = dia;
-      mesSelecionado = mesCalendario;
-      anoSelecionado = anoCalendario;
-
-      renderDias();
-    });
-
-    daysGrid.appendChild(btn);
-  }
-
-  /* =========================
-     ABRIR E FECHAR
-  ========================= */
-
-  function abrirCalendario() {
-    visualizacao = 'meses';
-    anoCalendario = anoSelecionado;
-
-    render();
-
-    overlay.classList.add('open');
-    openBtn.style.visibility = 'hidden';
-  }
-
-  function fecharCalendario() {
-    overlay.classList.remove('open');
-    openBtn.style.visibility = 'visible';
-  }
-
-  openBtn.addEventListener('click', abrirCalendario);
-
-  /*
-   * Volta para os meses sem fechar o painel.
-   */
-  backBtn.addEventListener('click', function () {
-    visualizacao = 'meses';
-    anoCalendario = anoSelecionado;
-
-    render();
-  });
-
-  /*
-   * Fecha somente quando clicar fora do painel.
-   */
-  overlay.addEventListener('click', function (event) {
-    if (event.target === overlay) {
-      fecharCalendario();
-    }
-  });
-
-  /* =========================
-     NAVEGAÇÃO
-  ========================= */
-
-  prevBtn.addEventListener('click', function () {
-    if (visualizacao === 'meses') {
-      anoCalendario--;
-    } else {
-      mesCalendario--;
-
-      if (mesCalendario < 0) {
-        mesCalendario = 11;
-        anoCalendario--;
-      }
-
-      diaSelecionado = 0;
-    }
-
-    render();
-  });
-
-  nextBtn.addEventListener('click', function () {
-    if (visualizacao === 'meses') {
-      anoCalendario++;
-    } else {
-      mesCalendario++;
-
-      if (mesCalendario > 11) {
-        mesCalendario = 0;
-        anoCalendario++;
-      }
-
-      diaSelecionado = 0;
-    }
-
-    render();
-  });
-
-})();
-</script>
-<!-- ===== FIM SCRIPT DO COMPONENTE ===== -->
 
 </body>
+
 </html>
