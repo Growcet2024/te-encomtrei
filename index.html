@@ -113,7 +113,24 @@
       margin:25px 0 15px; /* ===== Distancia em relação a inha de cima===== */
     }
 
+/* ===== CORAÇÃO PULSANTE — SOBRE ===== */
 
+.coracao-pulsante{
+  display:inline-block;
+  animation:pulsar-coracao 1.2s infinite;
+}
+
+@keyframes pulsar-coracao{
+  0%, 100%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.2);
+  }
+}
+
+/* ===== FIM — CORAÇÃO PULSANTE ===== */
 
 
 
@@ -136,7 +153,7 @@
 
   <div class="conteudo-sobre">
 
-    <h2>Sobre o Te Encontrei ❤️</h2>
+    <h2>Sobre o Te Encontrei <span class="coracao-pulsante">❤️</span></h2>
 
     <h3>Onde uma história de amor ganha um lugar só dela</h3>
 
@@ -287,7 +304,6 @@
 
   </div>
   
-
 
 
 
