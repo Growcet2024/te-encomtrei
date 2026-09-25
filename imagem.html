@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Imagem</title>
+
+<style>
+
+    /* ===== DESATIVAR SELEÇÃO DE TEXTO ===== */
+body{
+  -webkit-user-select:none;
+  user-select:none;
+}
+  /* ===== DESATIVAR SELEÇÃO DE TEXTO ===== */
+
+body{
+  margin:0;
+  min-height:100vh;
+  background-color:#f0f4f8; /* ===== cor fundo ===== */
+}
+
+
+/* ===== BARRA SUPERIOR ===== */
+.barra-topo{
+  text-align:left;
+  background-color:#f0f4f8;   /* ===== COR BARRA SUPERIOR ===== */
+  padding:20px;
+  margin-bottom:0;
+  border-bottom:2px solid #e0e0e0;
+  box-sizing:border-box;
+}
+
+.barra-topo h1{
+  margin:0;
+  font-size:20px;
+  color:#3A2530;   /* ===== COR DO TÍTULO ===== */
+  text-align:center;
+}
+/* ===== BARRA SUPERIOR ===== */
+
+/* ===== LINHA BRANCA SEPARADORA ===== */
+.separador-barra{
+  margin:0 0 20px;
+  border:0;
+  border-top:3px solid #F4D1B1;   /* ===== COR DA LINHA ===== */
+}
+/* ===== LINHA BRANCA SEPARADORA ===== */
+
+
+/* ===== BOTÃO VOLTAR ===== */
+.botao-voltar{
+  position:fixed;
+  top:15px;
+  right:15px;
+
+  text-decoration:none;
+  color:#3A2530;  /* ===== COR VOLTAR ===== */
+  font-size:20px;
+}
+/* ===== BOTÃO VOLTAR ===== */
+ 
+
+/* ===== CARD PREVIEW DA IMAGEM ===== */
+.card-preview-imagem{
+  width:50%;
+  max-width:180px;
+  margin:00px auto;
+  padding:10px;
+
+  box-sizing:border-box;
+
+  background:#FFFFFF;
+  border-radius:25px;
+
+  overflow:hidden;
+}
+
+.card-preview-imagem img{
+  width:100%;
+aspect-ratio:9 / 16;
+
+  object-fit:cover;
+  display:block;
+
+  border-radius:15px;
+}
+
+
+/* ===== BOTÃO escolher imagem ===== */
+.botao-padrao{
+  display:block;
+  width:90%;
+  max-width:320px;
+  padding:12px;
+
+  margin:15px auto;
+
+  box-sizing:border-box;
+
+  border:3px solid #F4D1B1;
+  border-radius:10px;
+
+  background:#ffffff;
+  color:#3A2530;
+
+  font-family:'Cormorant Garamond', serif;
+  font-size:16px;
+  text-align:center;
+
+  cursor:pointer;
+
+  transition:background 0.3s;
+}
+/* ===== BOTÃO escolher imagem ===== */
+
+
+
+
+/* ===== TOGGLE IMAGEM ===== */
+.controle-toggle-imagem{
+  width:90%;
+  max-width:320px;
+
+  margin:20px auto;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  font-family:'Cormorant Garamond', serif;
+  color:#8A6E78;
+  font-size:18px;
+}
+
+.toggle-imagem{
+  position:relative;
+  width:52px;
+  height:28px;
+  display:inline-block;
+}
+
+.toggle-imagem input{
+  opacity:0;
+  width:0;
+  height:0;
+}
+
+.slider-imagem{
+  position:absolute;
+  inset:0;
+
+  background:#cccccc;
+  border-radius:28px;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.slider-imagem::before{
+  content:"";
+
+  position:absolute;
+
+  width:22px;
+  height:22px;
+
+  left:3px;
+  top:3px;
+
+  background:#FFFFFF;
+  border-radius:50%;
+
+  transition:0.3s;
+}
+
+.toggle-imagem input:checked + .slider-imagem{
+  background:#F4D1B1;  /* ===== TOGGle On Ligado ===== */
+}
+
+.toggle-imagem input:checked + .slider-imagem::before{
+  transform:translateX(24px);
+}
+/* ===== TOGGLE IMAGEM ===== */
+
+
+/* ===== TÍTULO IMAGEM DA TELA ===== */
+.imagem-tela{
+  width:90%;
+  max-width:400px;
+  margin:10px auto;
+  text-align:center;
+}
+
+.imagem-tela h2{
+  margin:0;
+
+  font-family:'Cormorant Garamond', serif;
+  color:#3A2530;
+  font-size:20px;
+  font-weight:normal;
+}
+/* ===== TÍTULO IMAGEM DA TELA ===== */
+
+
+
+
+
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- ===== BARRA SUPERIOR ===== -->
+  <div class="barra-topo">
+    <h1>Imagem</h1>
+  </div>
+
+<!-- ===== SEPARADOR ===== -->
+<hr class="separador-barra">
+<!-- ===== SEPARADOR ===== -->
+
+  <!-- ===== CONTEÚDO DA PÁGINA ===== -->
+<!-- ===== IMAGEM DA TELA ===== -->
+
+<div class="imagem-tela">
+
+  <h2>Imagem da tela</h2>
+
+</div>
+
+
+<!-- ===== CARD PREVIEW DA IMAGEM ===== -->
+
+<div class="card-preview-imagem">
+
+
+
+
+  <img
+    id="imagem-atual"
+    src="imagens/fundo-tela.png"   /* ===== Image da tela ===== */
+    alt="Imagem de fundo"
+  >
+
+</div>
+
+
+<!-- ===== CARREGAR IMAGEM PERSONALIZADA ===== -->
+
+<div class="controle-imagem">
+
+  <label for="imagem-personalizada" class="botao-padrao">
+    Escolher imagem
+  </label>
+
+  <input
+    type="file"
+    id="imagem-personalizada"
+    accept="image/*"
+    hidden
+  >
+
+</div>
+
+<!-- ===== TOGGLE IMAGEM ===== -->
+
+<div class="controle-toggle-imagem">
+
+  <span>Imagem personalizada</span>
+
+  <label class="toggle-imagem">
+    <input type="checkbox" id="usar-imagem-personalizada">
+    <span class="slider-imagem"></span>
+  </label>
+
+</div>
+
+
+
+  <!-- ===== BOTÃO VOLTAR ===== -->
+  <a href="configuracao.html" class="botao-voltar">•••</a>
+
+
+
+
+<script>
+/* ===== ✅ SCRIPT 1 — CARREGAR E SALVAR IMAGEM ===== */
+
+const inputImagem =
+  document.getElementById("imagem-personalizada");
+
+const imagemAtual =
+  document.getElementById("imagem-atual");
+
+inputImagem.addEventListener("change", function(){
+
+  const arquivo = this.files[0];
+
+  if(!arquivo) return;
+
+  const leitor = new FileReader();
+
+  leitor.onload = function(e){
+
+    imagemAtual.src = e.target.result;
+
+    localStorage.setItem(
+      "imagemPersonalizada",
+      e.target.result
+    );
+
+    toggleImagem.checked = true;
+
+    localStorage.setItem(
+      "usarImagemPersonalizada",
+      "true"
+    );
+
+  };
+
+  leitor.readAsDataURL(arquivo);
+
+});
+/* ===== ✅ fim SCRIPT 1 — CARREGAR E SALVAR IMAGEM ===== */
+</script>
+
+
+
+<script>
+/* ===== ✅ SCRIPT 2 — CARREGAR IMAGEM SALVA ===== */
+
+const imagemSalva =
+  localStorage.getItem("imagemPersonalizada");
+
+const usarImagemPersonalizada =
+  localStorage.getItem("usarImagemPersonalizada");
+
+const toggleRestaurar =
+  document.getElementById("usar-imagem-personalizada");
+
+if(
+  imagemSalva &&
+  usarImagemPersonalizada === "true"
+){
+
+  imagemAtual.src = imagemSalva;
+  toggleRestaurar.checked = true;
+
+}else{
+
+  imagemAtual.src =
+    "imagens/fundo-tela.png";  /* ===== Image da tela ===== */
+
+  toggleRestaurar.checked = false;
+
+}
+/* ===== ✅ fim SCRIPT 2 — CARREGAR IMAGEM SALVA ===== */
+</script>
+
+
+
+
+<script>
+/* ===== ✅  SCRIPT 3 — TOGGLE DA IMAGEM ===== */
+
+const toggleImagem =
+  document.getElementById("usar-imagem-personalizada");
+
+toggleImagem.addEventListener("change", function(){
+
+  localStorage.setItem(
+    "usarImagemPersonalizada",
+    this.checked
+  );
+
+  if(this.checked){
+
+    const imagemSalva =
+      localStorage.getItem("imagemPersonalizada");
+
+    if(imagemSalva){
+      imagemAtual.src = imagemSalva;
+    }
+
+  }else{
+
+    imagemAtual.src =
+      "imagens/fundo-tela.png";   /* ===== Image da tela ===== */
+
+  }
+
+});
+/* ===== ✅  fim SCRIPT 3 — TOGGLE DA IMAGEM ===== */
+</script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Status</title>
+
+
+  <style>
+
+  /* ===== DESATIVAR SELEÇÃO DE TEXTO ===== */
+body{
+  -webkit-user-select:none;
+  user-select:none;
+}
+  /* ===== DESATIVAR SELEÇÃO DE TEXTO ===== */
+
+body{
+  margin:0;
+  min-height:100vh;
+  background-color:#f0f4f8; /* ===== cor fundo ===== */
+}
+
+/* ===== BARRA SUPERIOR ===== */
+.barra-topo{
+  text-align:left;
+  background-color:#f0f4f8;   /* ===== COR BARRA SUPERIOR ===== */
+  padding:20px;
+  margin-bottom:0;
+  border-bottom:2px solid #e0e0e0;
+  box-sizing:border-box;
+}
+
+.barra-topo h1{
+  margin:0;
+  font-size:20px;
+  color:#3A2530;   /* ===== COR DO TÍTULO ===== */
+  text-align:center;
+}
+/* ===== BARRA SUPERIOR ===== */
+
+/* ===== LINHA BRANCA SEPARADORA ===== */
+.separador-barra{
+  margin:0 0 20px;
+  border:0;
+  border-top:3px solid #F4D1B1;   /* ===== COR DA LINHA ===== */
+}
+/* ===== LINHA BRANCA SEPARADORA ===== */
+
+
+/* ===== BOTÃO VOLTAR ===== */
+.botao-voltar{
+  position:fixed;
+  top:15px;
+  right:15px;
+
+  text-decoration:none;
+  color:#3A2530;  /* ===== COR VOLTAR ===== */
+  font-size:20px;
+}
+/* ===== BOTÃO VOLTAR ===== */
+ 
+
+
+/* ===== ABAIXO CSS do conteúdo ===== */
+
+
+/* ===== STATUS DINÂMICO ===== */
+#status-nome{
+  width:90%;
+  max-width:320px;
+  margin:5px auto;
+
+  text-align:center;
+
+  font-family:'Cormorant Garamond', serif;
+  font-size:18px;
+  font-weight:400;
+
+  color:#3A2530;  /* ===== titulo===== */
+}
+
+
+/* ===== CARD PREVIEW DO STATUS ===== */
+
+.card-preview-status{
+  width:50%;
+  max-width:180px;
+  margin:0px auto;
+
+  padding:10px;
+
+  box-sizing:border-box;
+
+  background:#FFFFFF;
+  border-radius:25px;
+
+  overflow:hidden;
+}
+
+#status-aliancas{
+  width:100%;
+  aspect-ratio:9 / 16;
+
+  position:relative;
+  overflow:hidden;
+
+  border-radius:15px;
+}
+
+
+
+/* ===== DESLIZANTES DE STATUS ===== */
+.controles-status{
+  width:90%;
+  max-width:320px;
+  margin:20px auto;
+}
+
+.controles-status label{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  margin:10px 0;
+
+  font-family:'Cormorant Garamond', serif;
+  font-size:16px;
+  color:#8A6E78;
+}
+
+.controles-status input{
+  appearance:none;
+  width:42px;
+  height:22px;
+
+  background:#999999;
+  border-radius:20px;
+
+  position:relative;
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.controles-status input::before{
+  content:"";
+  position:absolute;
+
+  width:18px;
+  height:18px;
+
+  top:2px;
+  left:2px;
+
+  background:#ffffff;  /* ===== Dentro off */
+  border-radius:50%;
+
+  transition:0.3s;
+}
+
+.controles-status input:checked{
+  background:#F4D1B1;  /* ===== Dentro ON */
+}
+
+.controles-status input:checked::before{
+  transform:translateX(20px);
+}
+
+
+
+
+
+  </style>
+  
+
+</head>
+
+<body>
+
+  <!-- ===== BARRA SUPERIOR ===== -->
+  <div class="barra-topo">
+    <h1>Status</h1>
+  </div>
+<!-- ===== SEPARADOR ===== -->
+<hr class="separador-barra">
+<!-- ===== SEPARADOR ===== -->
+
+<!-- ===== HTML INÍCIO ===== -->
+
+<!-- ===== RELACIONAMENTO ===== -->
+
+<div id="status-nome">
+  <span class="status-fixo">Relacionamento:</span>
+  <span id="status-dinamico"></span>
+</div>
+
+<!-- ===== CARD STATUS ===== -->
+<div class="card-preview-status">
+
+  <div id="status-aliancas">
+
+  </div>
+
+</div>
+
+
+<!-- ===== CONTROLES DE STATUS ===== -->
+
+<div class="controles-status">
+
+  <label>
+    <span>Namorados</span>
+    <input type="checkbox" id="status-namorados">
+  </label>
+
+  <label>
+    <span>Noivos</span>
+    <input type="checkbox" id="status-noivos">
+  </label>
+
+  <label>
+    <span>Casados</span>
+    <input type="checkbox" id="status-casados">
+  </label>
+
+</div>
+
+
+
+<!-- ===== HTML FIM ===== -->
+
+
+
+  <!-- ===== BOTÃO VOLTAR ===== -->
+  <a href="configuracao.html" class="botao-voltar">•••</a>
+
+
+
+
+<script>
+// ✅ SCRIPT 1 — Duas alianças separadas = NAMORADOS
+window.addEventListener("load", function () {
+
+    const area = document.getElementById("status-aliancas");
+
+    function createRing(size, color, shadow) {
+
+        const ring = document.createElement("div");
+
+        ring.style.width = size + "px";
+        ring.style.height = size + "px";
+        ring.style.borderRadius = "50%";
+        ring.style.position = "absolute";
+        ring.style.border = "2px solid " + color;
+        ring.style.boxShadow = shadow;
+        ring.style.background = "rgba(255,255,255,0.08)";
+
+        area.appendChild(ring);
+
+        return ring;
+    }
+
+    const size = 42;
+
+    const ring1 = createRing(
+        size,
+        "#E2E2E2",
+        "0 0 10px rgba(255,255,255,0.45)"
+    );
+
+    const ring2 = createRing(
+        size,
+        "#E2E2E2",
+        "0 0 10px rgba(255,255,255,0.45)"
+    );
+
+    let x = (area.clientWidth - size) / 2;
+    let y = (area.clientHeight - size) / 2;
+
+    let vx = 0.8;
+    let vy = 0.8;
+
+    const spacing = 25;
+
+    function update() {
+
+        x += vx;
+        y += vy;
+
+        const maxX = area.clientWidth - size;
+        const maxY = area.clientHeight - size;
+
+        if (x <= spacing || x >= maxX - spacing) {
+            vx *= -1;
+        }
+
+        if (y <= 0 || y >= maxY) {
+            vy *= -1;
+        }
+
+        const t = Date.now();
+        const wave = Math.sin(t * 0.002) * 3;
+
+        ring1.style.left = (x - spacing) + "px";
+        ring1.style.top = (y + wave) + "px";
+        ring1.style.transform = `rotate(${wave}deg)`;
+
+        ring2.style.left = (x + spacing) + "px";
+        ring2.style.top = (y + wave) + "px";
+        ring2.style.transform = `rotate(${-wave}deg)`;
+
+        requestAnimationFrame(update);
+    }
+
+    update();
+
+});
+// ✅ SCRIPT 1 fim — Duas alianças separadas = NAMORADOS
+</script>
+
+
+
+
+
+<script>
+   // ✅ SCRIPT 2 — Duas alianças separadas = Noivos
+
+window.addEventListener("load", function () {
+
+    const area = document.getElementById("status-aliancas");
+
+    function createRing(size, color, shadow, z) {
+        const ring = document.createElement("div");
+
+        ring.style.width = size + "px";
+        ring.style.height = size + "px";
+        ring.style.borderRadius = "50%";
+        ring.style.position = "absolute";
+        ring.style.pointerEvents = "none";
+
+        ring.style.border = "2px solid " + color;
+        ring.style.boxShadow = shadow;
+        ring.style.background = "rgba(255,255,255,0.08)";
+        ring.style.zIndex = z;
+
+        area.appendChild(ring);
+
+        return ring;
+    }
+
+    const size = 42;
+
+    const ring1 = createRing(
+        size,
+        "#f7d77a",
+        "0 0 10px rgba(255,215,0,0.35)",
+        2
+    );
+
+    const ring2 = createRing(
+        size,
+        "#f7d77a",
+        "0 0 10px rgba(255,215,0,0.35)",
+        2
+    );
+
+    let baseX = (area.clientWidth - size) / 2;
+    let baseY = (area.clientHeight - size) / 2;
+
+    let vx = 1.0;
+    let vy = 1.0;
+
+    const spacing = 25;
+
+    function update() {
+
+        const maxX = area.clientWidth - size;
+        const maxY = area.clientHeight - size;
+
+        baseX += vx;
+        baseY += vy;
+
+        if (baseX <= spacing || baseX >= maxX - spacing) vx *= -1;
+        if (baseY <= 0 || baseY >= maxY) vy *= -1;
+
+        const t = Date.now();
+        const float = Math.sin(t * 0.002) * 5;
+
+        ring1.style.left = (baseX - spacing) + "px";
+        ring1.style.top = (baseY + float) + "px";
+
+        ring2.style.left = (baseX + spacing) + "px";
+        ring2.style.top = (baseY + float) + "px";
+
+        ring1.style.transform = `rotate(${float}deg)`;
+        ring2.style.transform = `rotate(${-float}deg)`;
+
+        requestAnimationFrame(update);
+    }
+
+    update();
+
+});
+ // ✅ SCRIPT 2 fim — Duas alianças separadas = Noivos
+</script>
+
+
+
+<script>
+    // ✅ SCRIPT 3 — Duas alianças entrelaçadas = Casados
+
+window.addEventListener("load", function () {
+
+    const area = document.getElementById("status-aliancas");
+
+    function createRing(size, color, shadow, z) {
+        const ring = document.createElement("div");
+
+        ring.style.width = size + "px";
+        ring.style.height = size + "px";
+        ring.style.borderRadius = "50%";
+        ring.style.position = "absolute";
+        ring.style.pointerEvents = "none";
+        ring.style.border = "2px solid " + color;
+        ring.style.boxShadow = shadow;
+        ring.style.background = "rgba(255,255,255,0.08)";
+        ring.style.zIndex = z;
+
+        area.appendChild(ring);
+
+        return ring;
+    }
+
+    const size = 42;
+
+    const ring1 = createRing(
+        size,
+        "#f7d77a",
+        "0 0 10px rgba(255,215,0,0.35)",
+        2
+    );
+
+    const ring2 = createRing(
+        size,
+        "#f7d77a",
+        "0 0 10px rgba(255,215,0,0.35)",
+        2
+    );
+
+    const angle1 = -35;
+    const angle2 = 35;
+    const offsetX = 16;
+    const offsetY = 6;
+
+    let x = (area.clientWidth - size) / 2;
+    let y = (area.clientHeight - size) / 2;
+
+    let vx = 1.0;
+    let vy = 1.0;
+
+    function update() {
+
+        x += vx;
+        y += vy;
+
+        const maxX = area.clientWidth - size - offsetX;
+        const maxY = area.clientHeight - size - offsetY;
+
+        if (x <= 0 || x >= maxX) vx *= -1;
+        if (y <= 0 || y >= maxY) vy *= -1;
+
+        const t = Date.now();
+        const wave = Math.sin(t * 0.002) * 3;
+        const front = Math.sin(t * 0.0015) > 0;
+
+        if (front) {
+            ring1.style.zIndex = 3;
+            ring2.style.zIndex = 2;
+        } else {
+            ring1.style.zIndex = 2;
+            ring2.style.zIndex = 3;
+        }
+
+        ring1.style.left = x + "px";
+        ring1.style.top = (y + wave) + "px";
+        ring1.style.transform =
+            `rotate(${angle1 + wave}deg)`;
+
+        ring2.style.left = (x + offsetX) + "px";
+        ring2.style.top = (y + offsetY - wave) + "px";
+        ring2.style.transform =
+            `rotate(${angle2 - wave}deg)`;
+
+        requestAnimationFrame(update);
+    }
+
+    update();
+
+});
+   // ✅ SCRIPT 3 fim — Duas alianças entrelaçadas = Casados
+</script>
+
+
+
+<script>
+/* =========================================================
+    ✅SCRIPT 4 — CONTROLE DOS STATUS salva
+   ========================================================= */
+
+const statusDinamico =
+  document.getElementById("status-dinamico");
+
+const statusNamorados =
+  document.getElementById("status-namorados");
+
+const statusNoivos =
+  document.getElementById("status-noivos");
+
+const statusCasados =
+  document.getElementById("status-casados");
+
+
+function atualizarStatus() {
+
+  const status = [
+    {
+      controle: statusNamorados,
+      nome: "Namorados"
+    },
+    {
+      controle: statusNoivos,
+      nome: "Noivos"
+    },
+    {
+      controle: statusCasados,
+      nome: "Casados"
+    }
+  ];
+
+  const ativo =
+    status.find(item => item.controle.checked);
+
+
+  status.forEach(item => {
+
+    if(item !== ativo){
+      item.controle.checked = false;
+    }
+
+  });
+
+
+  statusDinamico.textContent =
+    ativo ? " " + ativo.nome : "";
+
+
+  /* ===== SALVAR STATUS ===== */
+
+  if (ativo) {
+
+    localStorage.setItem(
+      "statusRelacionamento",
+      ativo.nome
+    );
+
+  } else {
+
+    localStorage.removeItem(
+      "statusRelacionamento"
+    );
+
+  }
+
+}
+
+
+/* ===== EVENTOS ===== */
+
+statusNamorados.addEventListener(
+  "change",
+  atualizarStatus
+);
+
+statusNoivos.addEventListener(
+  "change",
+  atualizarStatus
+);
+
+statusCasados.addEventListener(
+  "change",
+  atualizarStatus
+);
+
+
+/* ===== RESTAURAR STATUS AO ABRIR A PÁGINA ===== */
+
+const statusSalvo =
+  localStorage.getItem("statusRelacionamento");
+
+
+if (statusSalvo === "Namorados") {
+  statusNamorados.checked = true;
+}
+
+else if (statusSalvo === "Noivos") {
+  statusNoivos.checked = true;
+}
+
+else if (statusSalvo === "Casados") {
+  statusCasados.checked = true;
+}
+
+
+atualizarStatus();
+
+/* =========================================================
+    ✅ FIM SCRIPT 4
+   ========================================================= */
+</script>
+
+
+<script>
+/* =========================================================
+   ✅ SCRIPT 5 — CONTROLE DAS ALIANÇAS
+   ========================================================= */
+
+window.addEventListener("load", function () {
+
+    const area = document.getElementById("status-aliancas");
+
+    const controleNamorados =
+        document.getElementById("status-namorados");
+
+    const controleNoivos =
+        document.getElementById("status-noivos");
+
+    const controleCasados =
+        document.getElementById("status-casados");
+
+
+    function atualizarAliancas() {
+
+        const aliancas = area.children;
+
+        // 🔴 PRIMEIRO: esconder todas
+        for (let i = 0; i < aliancas.length; i++) {
+            aliancas[i].style.display = "none";
+        }
+
+
+        // ❤️ NAMORADOS
+        if (controleNamorados.checked) {
+
+            aliancas[0].style.display = "block";
+            aliancas[1].style.display = "block";
+
+        }
+
+
+        // 💍 NOIVOS
+        else if (controleNoivos.checked) {
+
+            aliancas[2].style.display = "block";
+            aliancas[3].style.display = "block";
+
+        }
+
+
+        // 💒 CASADOS
+        else if (controleCasados.checked) {
+
+            aliancas[4].style.display = "block";
+            aliancas[5].style.display = "block";
+
+        }
+
+    }
+
+
+    // 🎚️ CONTROLES
+    controleNamorados.addEventListener(
+        "change",
+        atualizarAliancas
+    );
+
+    controleNoivos.addEventListener(
+        "change",
+        atualizarAliancas
+    );
+
+    controleCasados.addEventListener(
+        "change",
+        atualizarAliancas
+    );
+
+
+    // 🚫 INICIALMENTE: TODAS OCULTAS
+    atualizarAliancas();
+
+});
+/* =========================================================
+   ✅ SCRIPT fim 5 — CONTROLE DAS ALIANÇAS
+   ========================================================= */
+</script>
+
+
+<script>
+/* =========================================================
+     ✅ SCRIPT 6 — IMAGEM DE FUNDO DO CARD STATUS
+   ========================================================= */
+
+window.addEventListener("load", function () {
+
+    const area =
+        document.getElementById("status-aliancas");
+
+    const imagemSalva =
+        localStorage.getItem("imagemPersonalizada");
+
+    const usarImagemPersonalizada =
+        localStorage.getItem("usarImagemPersonalizada");
+
+
+    let imagemFundo;
+
+
+    if (
+        imagemSalva &&
+        usarImagemPersonalizada === "true"
+    ) {
+
+        imagemFundo = imagemSalva;
+
+    } else {
+
+        imagemFundo = "imagens/fundo-tela.png";
+
+    }
+
+
+    area.style.backgroundImage =
+        `url("${imagemFundo}")`;
+
+    area.style.backgroundSize = "cover";
+    area.style.backgroundPosition = "center";
+    area.style.backgroundRepeat = "no-repeat";
+
+});
+/* =========================================================
+     ✅ SCRIPT fim 6 — IMAGEM DE FUNDO DO CARD STATUS
+   ========================================================= */
+</script>
+
+
+</body>
+
+</html>

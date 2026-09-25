@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Perfil</title>
+
+  <style>
+
+      /* ===== DESATIVAR SELEÇÃO DE TEXTO ===== */
+body{
+  -webkit-user-select:none;
+  user-select:none;
+}
+  /* ===== DESATIVAR SELEÇÃO DE TEXTO ===== */
+
+body{
+  margin:0;
+  min-height:100vh;
+  background-color:#f0f4f8; /* ===== cor fundo ===== */
+}
+
+/* ===== BARRA SUPERIOR ===== */
+.barra-topo{
+  text-align:left;
+  background-color:#f0f4f8;   /* ===== COR BARRA SUPERIOR ===== */
+  padding:18px;
+  margin-bottom:0;
+  border-bottom:2px solid #e0e0e0;
+  box-sizing:border-box;
+}
+
+.barra-topo h1{
+  margin:0;
+  font-size:20px;
+  color:#3A2530;   /* ===== COR DO TÍTULO ===== */
+  text-align:center;
+}
+
+
+.barra-topo h1 .coracao-pulsante{
+  display:inline-block;
+  animation:pulsar-coracao 1.2s infinite;
+}
+
+@keyframes pulsar-coracao{
+  0%, 100%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.2);
+  }
+}
+
+/* ===== BARRA SUPERIOR ===== */
+
+
+/* ===== LINHA BRANCA SEPARADORA ===== */
+.separador-barra{
+  margin:0 0 20px;
+  border:0;
+  border-top:3px solid #F4D1B1;   /* ===== COR DA LINHA ===== */
+}
+/* ===== LINHA BRANCA SEPARADORA ===== */
+
+
+/* ===== BOTÃO VOLTAR ===== */
+.botao-voltar{
+  position:fixed;
+  top:15px;
+  right:15px;
+
+  text-decoration:none;
+  color:#3A2530;  /* ===== COR VOLTAR ===== */
+  font-size:20px;
+}
+/* ===== BOTÃO VOLTAR ===== */
+
+
+   /* ===== PERFIL ===== */
+.perfil-container{
+  width:90%;
+  max-width:500px;
+  margin:30px auto;
+  text-align:center;
+}
+
+
+ /* ===== FOTO DE PERFIL ===== */
+.foto-perfil{
+  width:120px;
+  height:120px;
+  margin:0 auto 20px;
+  padding:0;
+  border-radius:50%;
+  overflow:hidden;
+  background:#ffffff;
+  border:2px solid #F4D1B1;  /* Borda */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-sizing:border-box;
+  position:relative;
+}
+
+.foto-perfil img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.foto-perfil span{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width:100%;
+  text-align:center;
+  font-size:14px;
+  color:#8A6E78;
+}
+
+
+/* ===== NOME ===== */
+.perfil-nome{
+  font-size:16px;
+  font-weight:bold;
+  color:#3A2530;
+  margin-bottom:8px;
+  text-align:center;
+}
+
+/* ===== ID ===== */
+.perfil-id{
+  font-size:15px;
+  color:#8A6E78;
+  text-align:center;
+}
+
+
+/* ===== CADASTRO DO NOME ===== */
+.perfil-cadastro{
+  margin-top:20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+
+/* ===== CAMPO Nome ===== */
+#user-name{
+  width:90%;
+  max-width:320px;
+  padding:12px;
+  box-sizing:border-box;
+  border:1px solid #F4D1B1;   /* ===== digita nome ===== */
+  border-radius:10px;
+  font-size:16px;
+  text-align:center;
+}
+/* ===== CAMPO Nome ===== */
+
+/* ===== botão SALVAR NOME ===== */
+#save-name-button{
+  width:90%;
+  max-width:320px;
+  padding:12px;
+  border:3px solid #F4D1B1;
+  border-radius:10px;
+  background:#ffffff;
+  color:#3A2530;
+  font-size:16px;
+  cursor:pointer;
+  transition:background 0.3s;
+}
+/* ===== BOTÃO ARREDONDADO SALVAR NOME ===== */
+
+
+/* ===== BOTÃO EDITAR NOME ===== */
+#edit-name-button{
+  width:90%;
+  max-width:320px;
+  padding:12px;
+  margin:10px auto;
+  display:block;
+  border:3px solid #F4D1B1;
+  border-radius:10px;
+  background:#ffffff;
+  color:#3A2530;
+  font-size:16px;
+  cursor:pointer;
+  transition:background 0.3s;
+}
+/* ===== BOTÃO EDITAR NOME ===== */
+
+
+
+  </style>
+  
+
+</head>
+<body>
+
+  <!-- ===== BARRA SUPERIOR ===== ✅ --->
+  <div class="barra-topo">
+    <h1>Perfil</h1>
+  </div>
+
+<!-- ===== SEPARADOR ===== -->
+<hr class="separador-barra">
+<!-- ===== SEPARADOR ===== -->
+
+<!-- ✅-===== PERFIL ===== -->
+<div class="perfil-container">
+
+  <!-- ===== FOTO DE PERFIL ===== -->
+  <label for="foto-input" class="foto-perfil">
+
+    <img id="foto-preview" src="" alt="">
+
+    <span>Foto de perfil</span>
+
+  </label>
+
+  <input
+    type="file"
+    id="foto-input"
+    accept="image/*"
+    style="display:none;"
+  >
+
+</div>
+
+
+  <!-- ✅ ===== NOME ===== -->
+  <div class="perfil-nome">
+    Identificação
+  </div>
+
+  <!-- ===== ID ===== -->
+  <div class="perfil-id">
+    ID: aguardando cadastro
+  </div>
+
+</div>
+
+
+
+<!-- ===== CADASTRO DO NOME ===== -->
+<div class="perfil-cadastro">
+
+  <input
+    type="text"
+    id="user-name"
+    placeholder="Digite seu nome"
+    maxlength="50"
+  >
+
+  <button
+    type="button"
+    id="save-name-button"
+  >
+    Salvar
+  </button>
+
+</div>
+
+<!-- ===== BOTÃO EDITAR ===== -->
+<button
+  type="button"
+  id="edit-name-button"
+  style="display:none;"
+>
+  Editar nome
+</button>
+
+ 
+
+  <!-- ===== BOTÃO VOLTAR ===== -->
+  <a href="configuracao.html" class="botao-voltar">•••</a>
+
+
+
+  <!-- ===== ARMAZENAMENTO DO NOME PERFIL INICIO ===== -->
+
+<script>
+/* ✅-===== ARMAZENAMENTO DO PERFIL 1 ===== */
+
+/* Verifica se o localStorage está disponível */
+try {
+  localStorage.setItem("teste_perfil", "ok");
+  localStorage.removeItem("teste_perfil");
+
+  console.log("LocalStorage do Perfil disponível.");
+} catch (erro) {
+  console.error("LocalStorage indisponível:", erro);
+}
+</script>
+
+
+
+<script>
+/* ✅-===== SALVAR NOME + GERAR ID 2 ===== */
+
+document.getElementById("save-name-button").addEventListener("click", function() {
+
+  const nome = document.getElementById("user-name").value.trim();
+
+  if (!nome) {
+    return;
+  }
+
+  let usuario = JSON.parse(localStorage.getItem("perfil"));
+
+  if (!usuario) {
+
+    const agora = new Date();
+
+    const data =
+      agora.getFullYear() +
+      String(agora.getMonth() + 1).padStart(2, "0") +
+      String(agora.getDate()).padStart(2, "0");
+
+    const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+    let codigo = "";
+
+    for (let i = 0; i < 5; i++) {
+      codigo += caracteres.charAt(
+        Math.floor(Math.random() * caracteres.length)
+      );
+    }
+
+    usuario = {
+      nome: nome,
+      userID: data + "-" + codigo
+    };
+
+  } else {
+
+    usuario.nome = nome;
+
+  }
+
+  localStorage.setItem("perfil", JSON.stringify(usuario));
+
+
+  /* Atualiza tela imediatamente */
+
+  document.querySelector(".perfil-nome").textContent =
+    usuario.nome;
+
+  document.querySelector(".perfil-id").textContent =
+    "ID: " + usuario.userID;
+
+
+  document.getElementById("user-name").style.display = "none";
+
+  document.getElementById("save-name-button").style.display = "none";
+
+  document.getElementById("edit-name-button").style.display = "block";
+
+});
+</script>
+
+
+
+
+
+
+<script>
+/* ✅-===== MOSTRAR NOME + ID SALVOS 3 ===== */
+
+function carregarPerfil() {
+
+  const usuario = JSON.parse(localStorage.getItem("perfil"));
+
+  if (usuario) {
+
+    document.querySelector(".perfil-nome").textContent =
+      usuario.nome;
+
+    document.querySelector(".perfil-id").textContent =
+      "ID: " + usuario.userID;
+
+    document.getElementById("user-name").style.display = "none";
+    document.getElementById("save-name-button").style.display = "none";
+    document.getElementById("edit-name-button").style.display = "block";
+  }
+}
+
+/* ===== CARREGA O PERFIL AO ABRIR A PÁGINA ===== */
+
+carregarPerfil();
+</script>
+
+  <!-- ===== ARMAZENAMENTO DO NOME PERFIL FIM ===== -->
+
+<script>
+/* ✅-===== EDITAR NOME 4 ===== */
+
+document.getElementById("edit-name-button").addEventListener("click", function() {
+
+  const nomeAtual = document.querySelector(".perfil-nome").textContent;
+
+  document.getElementById("user-name").value = nomeAtual;
+
+  document.getElementById("user-name").style.display = "block";
+  document.getElementById("save-name-button").style.display = "block";
+  document.getElementById("edit-name-button").style.display = "none";
+
+});
+</script>
+
+
+<script>
+/* ✅-===== MOSTRAR BOTÃO EDITAR 5 ===== */
+
+const editButton = document.getElementById("edit-name-button");
+const saveButton = document.getElementById("save-name-button");
+const nameInput = document.getElementById("user-name");
+
+const abrirBanco = indexedDB.open("MeuApp", 1);
+
+abrirBanco.onsuccess = function(event) {
+
+  const banco = event.target.result;
+
+  const transaction = banco.transaction(["perfil"], "readonly");
+  const store = transaction.objectStore("perfil");
+
+  const consulta = store.get("usuario");
+
+  consulta.onsuccess = function() {
+
+    if (consulta.result) {
+      editButton.style.display = "block";
+      saveButton.style.display = "none";
+      nameInput.style.display = "none";
+    }
+
+  };
+};
+</script>
+
+
+<!-- ===== ARMAZENAMENTO DA FOTO PERFIL INICIO ===== -->
+
+<script>
+/* ✅===== FOTO DE PERFIL 6 ===== */
+
+const fotoInput = document.getElementById("foto-input");
+const fotoPreview = document.getElementById("foto-preview");
+const fotoTexto = document.querySelector(".foto-perfil span");
+
+/* Carrega foto salva */
+const fotoSalva = localStorage.getItem("fotoPerfil");
+
+if (fotoSalva) {
+  fotoPreview.src = fotoSalva;
+  fotoTexto.style.display = "none";
+}
+
+/* Seleciona nova foto */
+fotoInput.addEventListener("change", function(event) {
+
+  const arquivo = event.target.files[0];
+
+  if (!arquivo) {
+    return;
+  }
+
+  const leitor = new FileReader();
+
+  leitor.onload = function(e) {
+
+    const imagem = new Image();
+
+    imagem.onload = function() {
+
+      const tamanhoMaximo = 800;
+
+      let largura = imagem.width;
+      let altura = imagem.height;
+
+      if (largura > tamanhoMaximo || altura > tamanhoMaximo) {
+
+        if (largura > altura) {
+          altura = Math.round(altura * tamanhoMaximo / largura);
+          largura = tamanhoMaximo;
+        } else {
+          largura = Math.round(largura * tamanhoMaximo / altura);
+          altura = tamanhoMaximo;
+        }
+      }
+
+      const canvas = document.createElement("canvas");
+
+      canvas.width = largura;
+      canvas.height = altura;
+
+      const contexto = canvas.getContext("2d");
+
+      contexto.drawImage(imagem, 0, 0, largura, altura);
+
+      /* Comprime a imagem */
+      const imagemCompactada =
+        canvas.toDataURL("image/jpeg", 0.75);
+
+      /* Mostra a imagem */
+      fotoPreview.src = imagemCompactada;
+
+      /* Salva a imagem compactada */
+      localStorage.setItem("fotoPerfil", imagemCompactada);
+
+      /* Esconde o texto */
+      fotoTexto.style.display = "none";
+    };
+
+    imagem.src = e.target.result;
+  };
+
+  leitor.readAsDataURL(arquivo);
+
+});
+</script>
+
+<!-- ===== ARMAZENAMENTO DA FOTO PERFIL FIM ===== -->
+
+
+
+
+
+</body>
+
+</html>

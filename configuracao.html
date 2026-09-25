@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Configurações</title>
+
+  <style>
+
+    /* ===== DESATIVAR SELEÇÃO DE TEXTO ===== */
+body{
+  -webkit-user-select:none;
+  user-select:none;
+}
+  /* ===== DESATIVAR SELEÇÃO DE TEXTO ===== */
+
+
+body{
+  margin:0;
+  min-height:100vh;
+  background-color:#f0f4f8; /* ===== cor fundo ===== */
+}
+
+
+/* ===== BARRA SUPERIOR ===== */
+.barra-topo{
+  text-align:left;
+  background-color:#f0f4f8;   /* ===== COR BARRA SUPERIOR ===== */
+  padding:20px;
+  margin-bottom:0;
+  border-bottom:2px solid #e0e0e0;
+  box-sizing:border-box;
+}
+
+.barra-topo h1{
+  margin:0;
+  font-size:20px;
+  color:#3A2530;   /* ===== COR DO TÍTULO ===== */
+  text-align:center;
+}
+/* ===== BARRA SUPERIOR ===== */
+
+/* ===== LINHA BRANCA SEPARADORA ===== */
+.separador-barra{
+  margin:0 0 20px;
+  border:0;
+  border-top:3px solid #f4d1b1;   /* ===== COR DA LINHA ===== */
+}
+/* ===== LINHA BRANCA SEPARADORA ===== */
+
+
+/* ===== BOTÃO VOLTAR ===== */
+.botao-voltar{
+  position:fixed;
+  top:15px;
+  right:15px;
+
+  text-decoration:none;
+  color:#3A2530;  /* ===== COR VOLTAR ===== */
+  font-size:20px;
+}
+/* ===== BOTÃO VOLTAR ===== */
+ 
+
+   /* ===== CARDS LINKS ===== */
+.configuracoes{
+  width:90%;
+  max-width:500px;
+  margin:20px auto;
+  padding:0;
+  
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:15px;
+}
+
+
+/* ===== CARD ===== */
+.card-config{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  width:100%;
+  aspect-ratio:1 / 1;
+  height:auto;
+  padding:15px;
+  margin:0;
+  box-sizing:border-box;
+  border-radius:16px;
+  background:#fff;             /* ===== cor de fundo ===== */
+  border:3px solid #f4d1b1;  /* ===== cor da borda ===== */
+  text-align:left;
+  text-decoration:none;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.12);
+}
+
+    /* ===== TÍTULO DOS CARDS ===== */
+    .titulo-card{
+      font-family:'Cormorant Garamond', serif;
+      font-size:18px;
+      font-weight:bold;
+      color:#3A2530;
+    }
+
+    /* ===== DESCRIÇÃO DOS CARDS ===== */
+    .descricao-card{
+      margin-top:5px;
+      font-size:12px;
+      opacity:0.7;
+      color:#8A6E78;
+    }
+
+
+/* ===== Botão sobre ===== */ 
+.botao-sobre{
+  width:50px;
+  height:50px;
+  padding:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin:20px auto;
+
+  background:#fff;
+  border:3px solid #f4d1b1;
+  border-radius:50%;
+
+  color:#3A2530;  /* COR DO + MAIS */ 
+  font-size:30px;
+  text-decoration:none;
+  box-sizing:border-box;
+}
+/* ===== Botão sobre ===== */ 
+
+
+  </style>
+
+
+</head>
+<body>
+
+
+  <!-- ===== BARRA SUPERIOR ===== -->
+  <div class="barra-topo">
+    <h1>Configurações</h1>
+  </div>
+
+<!-- ===== SEPARADOR ===== -->
+<hr class="separador-barra">
+<!-- ===== SEPARADOR ===== -->
+
+<!-- ===== CONTAINER DE FUNDO ===== -->
+<div class="fundo-config">
+
+  <div class="configuracoes">
+
+ <!-- ===== CARD 1 Estou aqui ===== -->
+<a href="estouaqui.html" class="card-config">
+  <div class="titulo-card">Estou aqui</div>
+  <div class="descricao-card">Quem ama cuida</div>
+</a>
+
+ <!-- ===== CARD 2 PERFIL ===== -->
+<a href="perfil.html" class="card-config">
+  <div class="titulo-card">Perfil</div>
+  <div class="descricao-card">Nome e foto de perfil</div>
+</a>
+
+ <!-- ===== CARD 3 DATA / HORA ===== -->
+<a href="data-hora.html" class="card-config">
+  <div class="titulo-card">Data / Hora</div>
+  <div class="descricao-card">Registrar a data importante</div>
+</a>
+
+ <!-- ===== CARD 4 STATUS ===== -->
+<a href="status.html" class="card-config">
+  <div class="titulo-card">Status</div>
+  <div class="descricao-card">Namorados – Noivos – Casados</div>
+</a>
+
+  <!-- ===== CARD 5 IMAGEM ===== -->
+<a href="imagem.html" class="card-config">
+  <div class="titulo-card">Imagem</div>
+  <div class="descricao-card">Imagem da tela</div>
+</a>
+
+<!-- ===== CARD 6 FRASE ===== -->
+<a href="frase.html" class="card-config">
+  <div class="titulo-card">Frase</div>
+  <div class="descricao-card">Frase da tela do app</div>
+</a>
+
+  </div>
+</div>
+
+<!-- ===== página Sobre ===== -->
+<a href="sobre.html" class="botao-sobre">+</a>
+
+  <!-- ===== Botão voltar ==== -->
+  <a href="index.html" class="botao-voltar">•••</a>
+
+
+</body>
+</html>

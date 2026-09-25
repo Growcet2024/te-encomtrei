@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Data / Hora</title>
+
+
+
+<style>
+
+  /* ===== DESATIVAR SELEÇÃO DE TEXTO ===== */
+body{
+  -webkit-user-select:none;
+  user-select:none;
+}
+  /* ===== DESATIVAR SELEÇÃO DE TEXTO ===== */
+
+
+body{
+  margin:0;
+  min-height:100vh;
+  background-color:#f0f4f8; /* ===== cor fundo ===== */
+}
+
+/* ===== BARRA SUPERIOR ===== */
+.barra-topo{
+  text-align:left;
+  background-color:#f0f4f8;   /* ===== COR BARRA SUPERIOR ===== */
+  padding:18px;
+  margin-bottom:0;
+  border-bottom:2px solid #e0e0e0;
+  box-sizing:border-box;
+}
+
+.barra-topo h1{
+  margin:0;
+  font-size:20px;
+  color:#3A2530;   /* ===== COR DO TÍTULO ===== */
+  text-align:center;
+}
+/* ===== BARRA SUPERIOR ===== */
+
+/* ===== LINHA BRANCA SEPARADORA ===== */
+.separador-barra{
+  margin:0 0 20px;
+  border:0;
+  border-top:3px solid #F4D1B1;   /* ===== COR DA LINHA ===== */
+}
+/* ===== LINHA BRANCA SEPARADORA ===== */
+
+
+/* ===== BOTÃO VOLTAR ===== */
+.botao-voltar{
+  position:fixed;
+  top:15px;
+  right:15px;
+
+  text-decoration:none;
+  color:#3A2530;  /* ===== COR VOLTAR ===== */
+  font-size:20px;
+}
+/* ===== BOTÃO VOLTAR ===== */
+ 
+
+/* ===== TÍTULO INFORMATIVO ===== */
+.titulo{
+  width:90%;
+  max-width:320px;
+  margin:0 auto 10px;
+
+  color:#3A2530;
+  font-size:16px;
+  font-weight:bold;
+  text-align:center;
+  margin-top:15px;
+}
+
+/* ===== SUBTÍTULO ===== */
+.subtitulo{
+  width:90%;
+  max-width:320px;
+  margin:-4px auto 14px;
+
+  color:#8A6E78;
+  font-size:16px;
+  font-weight:normal;
+  text-align:center;
+}
+/* ===== TÍTULO INFORMATIVO ===== */
+
+
+/* ===== 1 CARD DATA / HORA ===== */
+.card-data-hora{
+  width:90%;
+  max-width:500px;
+  
+margin:15px auto 15px; /* Margem top ===== */
+
+  padding:10px;
+
+  box-sizing:border-box;
+  border-radius:16px;
+
+aspect-ratio:5 / 1;
+
+  background:#fff;
+  border:3px solid #F4D1B1;  /* ===== cor borda data/hos externo ===== */ 
+
+  box-shadow:0 2px 8px rgba(0,0,0,0.12);
+}
+/* ===== 1 CARD DATA / HORA ===== */
+
+
+
+/* ===== Texto TÍTULO DO CARD ===== */
+.titulo-data-hora{
+  text-align:center;
+  font-family:'Cormorant Garamond', serif;
+  font-size:24px;
+  font-weight:bold;
+  color:#3A2530;
+  margin-bottom:10px;
+}
+
+/* ===== 1 ANO ===== */
+
+.tempo-ano{
+  text-align:center;
+  font-family:'Cormorant Garamond', serif;
+  font-size:22px;
+  font-weight:bold;
+  color:#3A2530;
+  margin-bottom:10px;
+}
+
+/* ===== TEMPO — DESCRIÇÃO ===== */
+.tempo-descricao{
+  text-align:center;
+  font-size:16px;
+  font-weight:normal;
+  color:#8A6E78;
+  margin:3px 0;
+}
+
+/* ===== 2 CARD seletot DATA + HORA ===== */
+.ajuste-data-hora{
+  width:90%;
+  max-width:320px;
+  margin:20px auto;
+}
+
+.seletor-data-hora{
+  width:100%;
+  box-sizing:border-box;
+  padding:18px;
+
+  border:3px solid #F4D1B1;   /* ===== Borda de fora card seletor */ 
+  border-radius:20px;
+
+  background:#FFFFFF;
+  box-shadow:0 4px 12px rgba(0,0,0,0.12);
+}
+/* ===== SELETOR PRÓPRIO DATA + HORA ===== */
+
+/* ===== Titulo do seletor ===== */
+.seletor-titulo{
+  margin-bottom:18px;
+
+  color:#3A2530;
+  font-size:18px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.seletor-data,
+.seletor-hora{
+  margin-bottom:16px;
+}
+
+.seletor-data label,
+.seletor-hora label{
+  display:block;
+  margin-bottom:7px;
+
+  font-size:16px;
+  font-weight:bold;
+}
+
+.seletores-data,
+.seletores-hora{
+  display:flex;
+  gap:8px;
+}
+
+.seletores-data select,
+.seletores-hora select{
+  flex:1;
+  min-width:0;
+  box-sizing:border-box;
+
+  padding:12px;
+
+  border:1px solid #F4D1B1; /* ===== Borda de dentro data/hora interno */
+  border-radius:10px;
+
+  background:#FFFFFF;
+  color:#333333;
+
+  font-size:16px;
+  outline:none;
+  cursor:pointer;
+}
+
+.botoes-seletor{
+  display:flex;
+  gap:10px;
+  margin-top:20px;
+}
+/* ===== Titulo do seletor ===== */
+
+
+/* ===== BOTÃO- 1 REGISTRAR DATA / HORA ===== */
+#btn-registrar{
+  width:90%;
+  max-width:320px;
+  padding:12px;
+
+  border:3px solid #F4D1B1;
+  border-radius:10px;
+
+  background:#ffffff;
+  color:#3A2530;
+
+  font-size:16px;
+  cursor:pointer;
+
+  transition:background 0.3s;
+  display:block;
+  margin:20px auto;
+}
+/* ===== BOTÃO REGISTRAR DATA / HORA ===== */
+
+
+/* ===== BOTÃO- 2 EDITAR DATA / HORA ===== */
+#btn-editar{
+  width:90%;
+  max-width:320px;
+  padding:12px;
+
+  border:3px solid #F4D1B1;
+  border-radius:10px;
+
+  background:#ffffff;
+  color:#3A2530;
+
+  font-size:16px;
+  cursor:pointer;
+
+  transition:background 0.3s;
+
+  display:block;
+  margin:20px auto;
+}
+/* ===== BOTÃO EDITAR DATA / HORA ===== */
+
+
+/* ===== BOTÕES CIRCULARES CANCELAR/DEFINIR ===== */
+.botoes-seletor{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  margin:20px auto;
+}
+
+.botao-circular{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  border:3px solid #F4D1B1;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#ffffff;
+  color:#3A2530;
+  transition:background 0.3s;
+  padding:0;
+}
+/* ===== BOTÕES CIRCULARES CANCELAR/DEFINIR ===== */
+
+
+
+
+  </style>
+
+
+</head>
+
+<body>
+
+  <!-- ===== BARRA SUPERIOR ===== -->
+  <div class="barra-topo">
+    <h1>Data / Hora</h1>
+  </div>
+
+<!-- ===== SEPARADOR ===== -->
+<hr class="separador-barra">
+<!-- ===== SEPARADOR ===== -->
+
+<!-- ===== CONTEÚDO DA PÁGINA ===== -->
+
+
+<!-- ===== RELACIONAMENTO DATA/HORA ===== -->
+
+<div class="titulo" id="status-data-hora">
+  <span class="status-fixo">Relacionamento:</span>
+  <span id="status-dinamico-data-hora"></span>
+</div>
+
+<!-- ===== FIM DO TÍTULO ===== -->
+
+
+  <!-- ===== CARD DATA / HORA ===== -->
+
+<div class="card-data-hora">
+
+  <div class="titulo-data-hora">
+    Te encontrei
+  </div>
+
+  <div class="tempo-ano">
+    0 Anos
+  </div>
+
+  <div class="tempo-descricao">
+    0 meses · 0 Dias
+  </div>
+
+  <div class="tempo-descricao">
+    0 Horas
+  </div>
+
+  <div class="tempo-descricao">
+    0 Minutos
+  </div>
+
+</div>
+
+<!-- ===== FIM DO CARD ===== -->
+
+<!-- ===== SUB TÍTULO INFORMATIVO ===== -->
+<div class="subtitulo">
+  Registre a data que marcou sua história.
+</div>
+
+
+<!-- ===== SELETOR PRÓPRIO DATA + HORA ===== -->
+
+<div class="ajuste-data-hora">
+
+  <div class="seletor-data-hora">
+
+    <div class="seletor-titulo">
+      Registrar data e hora
+    </div>
+
+    <div class="seletor-data">
+      <label>Data</label>
+
+      <div class="seletores-data">
+        <select id="dia-seletor">
+          <option value="">Dia</option>
+        </select>
+
+        <select id="mes-seletor">
+          <option value="">Mês</option>
+        </select>
+
+        <select id="ano-seletor">
+          <option value="">Ano</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="seletor-hora">
+      <label>Hora</label>
+
+      <div class="seletores-hora">
+        <select id="hora-seletor">
+          <option value="">Hora</option>
+        </select>
+
+        <select id="minuto-seletor">
+          <option value="">Min</option>
+        </select>
+      </div>
+    </div>
+
+
+<!-- Borão Canselar e Definir -->
+<div class="botoes-seletor">
+
+  <button type="button" id="cancelar-data-hora" class="botao-circular">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3A2530" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+  </button>
+
+  <button type="button" id="definir-data-hora" class="botao-circular">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3A2530" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+  </button>
+
+</div>
+<!-- Borão Canselar e Definir -->
+
+
+  </div>
+
+  <!-- Valores usados pela lógica existente -->
+  <input type="hidden" id="data-inicio">
+  <input type="hidden" id="hora-inicio">
+
+</div>
+
+<!-- ===== FIM DO SELETOR ===== -->
+
+
+
+
+
+
+
+
+<!-- ===== BOTÃO REGISTRAR DATA / HORA ===== -->
+<button type="button" id="btn-registrar">
+  Registrar data/hora
+</button>
+
+<!-- ===== BOTÃO EDITAR DATA / HORA ===== -->
+<button type="button" id="btn-editar">
+  Editar data/hora
+</button>
+
+
+
+  <!-- ===== BOTÃO VOLTAR ===== -->
+  <a href="configuracao.html" class="botao-voltar">•••</a>
+
+
+
+<script>
+/* ✅===== ARMAZENAMENTO DA DATA / HORA ===== 1 */
+
+/* 1. DATA ESPECIAL */
+let specialDate = null;
+
+/* 2. SALVAR DATA E HORA */
+
+function start(){
+
+  const dateInput = document.getElementById("data-inicio").value;
+  const timeInput = document.getElementById("hora-inicio").value;
+
+  if(!dateInput) return;
+
+  const [year, month, day] = dateInput.split("-").map(Number);
+
+  let hours = 0;
+  let minutes = 0;
+
+  if(timeInput){
+    const [h, m] = timeInput.split(":").map(Number);
+    hours = h;
+    minutes = m;
+  }
+
+  specialDate = new Date(
+    year,
+    month - 1,
+    day,
+    hours,
+    minutes
+  );
+
+  localStorage.setItem("data-inicio", dateInput);
+  localStorage.setItem("hora-inicio", timeInput);
+}
+
+</script>
+
+
+<script>
+/* ✅===== CÁLCULO DA CONTAGEM DE TEMPO ===== 2 */
+
+function update(){
+
+  if(!specialDate) return;
+
+  const now = new Date();
+
+  function addMonths(date, months){
+
+    const d = new Date(date);
+    const day = d.getDate();
+
+    d.setDate(1);
+    d.setMonth(d.getMonth() + months);
+
+    const lastDay = new Date(
+      d.getFullYear(),
+      d.getMonth() + 1,
+      0
+    ).getDate();
+
+    d.setDate(Math.min(day, lastDay));
+
+    return d;
+  }
+
+  let totalMonths =
+    (now.getFullYear() - specialDate.getFullYear()) * 12 +
+    (now.getMonth() - specialDate.getMonth());
+
+  let anniversary = addMonths(specialDate, totalMonths);
+
+  if(anniversary > now){
+
+    totalMonths--;
+    anniversary = addMonths(specialDate, totalMonths);
+
+  }
+
+  let years = Math.floor(totalMonths / 12);
+  let months = totalMonths % 12;
+
+  let remaining = now - anniversary;
+
+  let days = Math.floor(
+    remaining / (1000 * 60 * 60 * 24)
+  );
+
+  remaining %= (1000 * 60 * 60 * 24);
+
+  let hours = Math.floor(
+    remaining / (1000 * 60 * 60)
+  );
+
+  remaining %= (1000 * 60 * 60);
+
+  let minutes = Math.floor(
+    remaining / (1000 * 60)
+  );
+
+  document.querySelector(".tempo-ano").innerText =
+    years + (years === 1 ? " Ano" : " Anos");
+
+  const descricoes =
+    document.querySelectorAll(".tempo-descricao");
+
+  descricoes[0].innerText =
+    months + (months === 1 ? " mês" : " meses") +
+    " · " +
+    days + (days === 1 ? " Dia" : " Dias");
+
+  descricoes[1].innerText =
+    hours + (hours === 1 ? " Hora" : " Horas");
+
+  descricoes[2].innerText =
+    minutes + (minutes === 1 ? " Minuto" : " Minutos");
+}
+
+</script>
+
+
+<script>
+/* ✅===== CARREGAMENTO DA DATA / HORA ===== 3 */
+
+window.addEventListener("load", () => {
+
+  const dateInput = localStorage.getItem("data-inicio");
+  const timeInput = localStorage.getItem("hora-inicio");
+
+  const campos = document.querySelector(".ajuste-data-hora");
+  const btnRegistrar = document.getElementById("btn-registrar");
+  const btnEditar = document.getElementById("btn-editar");
+  const btnCancelar = document.getElementById("btn-cancelar");
+
+  if(dateInput){
+    document.getElementById("data-inicio").value = dateInput;
+  }
+
+  if(timeInput){
+    document.getElementById("hora-inicio").value = timeInput;
+  }
+
+  if(dateInput){
+
+    const [year, month, day] = dateInput.split("-").map(Number);
+
+    let hours = 0;
+    let minutes = 0;
+
+    if(timeInput){
+      const [h, m] = timeInput.split(":").map(Number);
+      hours = h;
+      minutes = m;
+    }
+
+    specialDate = new Date(
+      year,
+      month - 1,
+      day,
+      hours,
+      minutes
+    );
+
+    update();
+
+    /* COM REGISTRO */
+    campos.style.display = "none";
+    btnRegistrar.style.display = "none";
+    btnEditar.style.display = "block";
+    btnCancelar.style.display = "none";
+
+  } else {
+
+    /* SEM REGISTRO */
+    campos.style.display = "none";
+    btnRegistrar.style.display = "block";
+    btnEditar.style.display = "none";
+    btnCancelar.style.display = "none";
+
+  }
+
+});
+</script>
+
+
+<script>
+/* ✅===== ATUALIZAÇÃO AUTOMÁTICA DO CONTADOR ===== 4 */
+
+setInterval(update, 1000);
+
+</script>
+
+
+
+<script>
+/* ✅===== CONFIRMAÇÃO DA DATA / HORA ===== 5 */
+
+const diaSeletor = document.getElementById("dia-seletor");
+const mesSeletor = document.getElementById("mes-seletor");
+const anoSeletor = document.getElementById("ano-seletor");
+const horaSeletor = document.getElementById("hora-seletor");
+const minutoSeletor = document.getElementById("minuto-seletor");
+
+
+/* ===== PREENCHER DIAS ===== */
+
+for(let i = 1; i <= 31; i++){
+
+  const option = document.createElement("option");
+
+  option.value = String(i).padStart(2, "0");
+  option.textContent = i;
+
+  diaSeletor.appendChild(option);
+
+}
+
+
+/* ===== PREENCHER MESES ===== */
+
+const meses = [
+  "Janeiro",
+  "Fevereiro",
+  "Março",
+  "Abril",
+  "Maio",
+  "Junho",
+  "Julho",
+  "Agosto",
+  "Setembro",
+  "Outubro",
+  "Novembro",
+  "Dezembro"
+];
+
+meses.forEach((mes, index) => {
+
+  const option = document.createElement("option");
+
+  option.value = String(index + 1).padStart(2, "0");
+  option.textContent = mes;
+
+  mesSeletor.appendChild(option);
+
+});
+
+
+/* ===== PREENCHER ANOS ===== */
+
+const anoAtual = new Date().getFullYear();
+
+for(let ano = anoAtual; ano >= 1900; ano--){
+
+  const option = document.createElement("option");
+
+  option.value = ano;
+  option.textContent = ano;
+
+  anoSeletor.appendChild(option);
+
+}
+
+
+/* ===== PREENCHER HORAS ===== */
+
+for(let hora = 0; hora <= 23; hora++){
+
+  const option = document.createElement("option");
+
+  option.value = String(hora).padStart(2, "0");
+  option.textContent = String(hora).padStart(2, "0");
+
+  horaSeletor.appendChild(option);
+
+}
+
+
+/* ===== PREENCHER MINUTOS ===== */
+
+for(let minuto = 0; minuto <= 59; minuto++){
+
+  const option = document.createElement("option");
+
+  option.value = String(minuto).padStart(2, "0");
+  option.textContent = String(minuto).padStart(2, "0");
+
+  minutoSeletor.appendChild(option);
+
+}
+
+
+/* ===== DEFINIR DATA + HORA ===== */
+
+document.getElementById("definir-data-hora").addEventListener("click", () => {
+
+  const dia = diaSeletor.value;
+  const mes = mesSeletor.value;
+  const ano = anoSeletor.value;
+  const hora = horaSeletor.value;
+  const minuto = minutoSeletor.value;
+
+  /* Exige todos os campos */
+  if(!dia || !mes || !ano || !hora || !minuto){
+    return;
+  }
+
+  const dataCompleta = ano + "-" + mes + "-" + dia;
+  const horaCompleta = hora + ":" + minuto;
+
+  /* Preenche os campos usados pelo sistema */
+  document.getElementById("data-inicio").value = dataCompleta;
+  document.getElementById("hora-inicio").value = horaCompleta;
+
+  /* Salva diretamente */
+  localStorage.setItem("data-inicio", dataCompleta);
+  localStorage.setItem("hora-inicio", horaCompleta);
+
+  /* Atualiza a variável usada pelo contador */
+  const partesData = dataCompleta.split("-");
+
+  specialDate = new Date(
+    Number(partesData[0]),
+    Number(partesData[1]) - 1,
+    Number(partesData[2]),
+    Number(hora),
+    Number(minuto)
+  );
+
+  /* Atualiza o contador */
+  update();
+
+  /* Fecha o seletor */
+  document.querySelector(".ajuste-data-hora").style.display = "none";
+
+  /* Atualiza os botões */
+  document.getElementById("btn-editar").style.display = "block";
+  document.getElementById("btn-registrar").style.display = "none";
+
+});
+</script>
+
+
+<script>
+/* ✅===== ABRIR EDIÇÃO DE DATA / HORA ===== 6 */
+
+document.getElementById("btn-editar").addEventListener("click", () => {
+
+  document.querySelector(".ajuste-data-hora").style.display = "flex";
+
+  document.getElementById("btn-editar").style.display = "none";
+
+  document.getElementById("btn-registrar").style.display = "none";
+
+});
+</script>
+
+
+
+<script>
+/* ✅===== OCULTAR REGISTRO APÓS SALVAR ===== 7 */
+
+function finalizarRegistro(){
+
+  document.querySelector(".ajuste-data-hora").style.display = "none";
+
+  document.getElementById("btn-editar").style.display = "block";
+
+}
+
+</script>
+
+
+<script>
+/* ✅===== FINALIZAR REGISTRO DE DATA / HORA ===== 8 */
+
+document.getElementById("data-inicio").addEventListener("change", finalizarRegistro);
+document.getElementById("hora-inicio").addEventListener("change", finalizarRegistro);
+
+</script>
+
+
+<script>
+/* ✅===== ABRIR REGISTRO DE DATA / HORA ===== 9 */
+
+document.getElementById("btn-registrar").addEventListener("click", () => {
+
+  document.querySelector(".ajuste-data-hora").style.display = "flex";
+
+  document.getElementById("btn-registrar").style.display = "none";
+
+});
+</script>
+
+
+<script>
+/* ✅===== MOSTRAR CANCELAR NA EDIÇÃO ===== 10 */
+
+document.getElementById("btn-editar").addEventListener("click", () => {
+
+  document.querySelector(".ajuste-data-hora").style.display = "flex";
+
+  document.getElementById("btn-editar").style.display = "none";
+
+  document.getElementById("btn-registrar").style.display = "none";
+
+  document.getElementById("btn-cancelar").style.display = "block";
+
+});
+</script>
+
+
+<script>
+/* ✅===== CANCELAR EDIÇÃO DA DATA / HORA ===== 11 */
+
+document.getElementById("cancelar-data-hora").addEventListener("click", () => {
+
+  /* Fecha o seletor próprio */
+  document.querySelector(".ajuste-data-hora").style.display = "none";
+
+  /* Mantém o registro já salvo intacto */
+  const dataSalva = localStorage.getItem("data-inicio");
+  const horaSalva = localStorage.getItem("hora-inicio");
+
+  if(dataSalva){
+    document.getElementById("data-inicio").value = dataSalva;
+  }
+
+  if(horaSalva){
+    document.getElementById("hora-inicio").value = horaSalva;
+  }
+
+  /* Volta para o botão Editar */
+  document.getElementById("btn-editar").style.display = "block";
+
+  document.getElementById("btn-registrar").style.display = "none";
+
+});
+</script>
+
+
+
+<script>
+/* ✅===== RELACIONAMENTO — DATA/HORA ===== texto dinâmico */
+
+window.addEventListener("load", function () {
+
+  const status =
+    localStorage.getItem("statusRelacionamento");
+
+  const campo =
+    document.getElementById("status-dinamico-data-hora");
+
+  if (campo && status) {
+    campo.textContent = status;
+  }
+
+});
+</script>
+
+
+
+
+
+</body>
+
+</html>

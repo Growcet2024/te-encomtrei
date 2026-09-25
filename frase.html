@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Frase</title>
+
+<style>
+
+    /* ===== DESATIVAR SELEÇÃO DE TEXTO ===== */
+body{
+  -webkit-user-select:none;
+  user-select:none;
+}
+  /* ===== DESATIVAR SELEÇÃO DE TEXTO ===== */
+
+body{
+  margin:0;
+  min-height:100vh;
+  background-color:#f0f4f8; /* ===== cor fundo ===== */
+}
+
+
+/* ===== aJUSTE TOPO ===== */
+.frase-container{
+  margin-top:80px;
+}
+
+
+/* ===== BARRA SUPERIOR ===== */
+.barra-topo{
+  text-align:left;
+  background-color:#f0f4f8;   /* ===== COR BARRA SUPERIOR ===== */
+  padding:20px;
+  margin-bottom:0;
+  border-bottom:2px solid #e0e0e0;
+  box-sizing:border-box;
+}
+
+.barra-topo h1{
+  margin:0;
+  font-size:20px;
+  color:#3A2530;   /* ===== COR DO TÍTULO ===== */
+  text-align:center;
+}
+/* ===== BARRA SUPERIOR ===== */
+
+/* ===== LINHA BRANCA SEPARADORA ===== */
+.separador-barra{
+  margin:0 0 20px;
+  border:0;
+  border-top:3px solid #F4D1B1;   /* ===== COR DA LINHA ===== */
+}
+/* ===== LINHA BRANCA SEPARADORA ===== */
+
+
+/* ===== BOTÃO VOLTAR ===== */
+.botao-voltar{
+  position:fixed;
+  top:15px;
+  right:15px;
+
+  text-decoration:none;
+  color:#3A2530;  /* ===== COR VOLTAR ===== */
+  font-size:20px;
+}
+/* ===== BOTÃO VOLTAR ===== */
+ 
+
+/* ===== 01 — TÍTULOS DA PÁGINA ===== */
+h1{
+  text-align:center;
+  font-family:'Cormorant Garamond', serif;
+  color:#ffffff;
+  font-size:27px;
+}
+
+.barra-topo h1{
+  margin:0;
+}
+
+/* ===== 02 — BOTÕES ===== */
+#btn-adicionar-frase,
+#btn-salvar-frase,
+#btn-editar-frase,
+#btn-limpar-frase,
+#btn-adicionar-nome-amado,
+#btn-salvar-nome-amado,
+#btn-editar-nome-amado{
+  width:90%;
+  max-width:320px;
+  padding:12px;
+  margin:10px auto;
+  display:block;
+  border:3px solid #F4D1B1;
+  border-radius:10px;
+  background:#ffffff;
+  color:#3A2530;
+  font-size:16px;
+  cursor:pointer;
+  transition:background 0.3s;
+}
+/* ===== 02 — BOTÕES ===== */
+
+
+
+/* ===== 03 — CAMPOS frase ===== */
+#campo-frase,
+#campo-nome-amado{
+  width:90%;
+  max-width:320px;
+  display:block;
+  margin:10px auto;
+  padding:12px;
+  box-sizing:border-box;
+  background:#FFFFFF;
+  font-family:'Cormorant Garamond', serif;
+  font-size:18px;
+  outline:none;
+}
+
+#campo-frase{
+  height:60px !important;
+  min-height:80px !important;  /* ===== Altura compo escrever frase ===== */
+  border:1px solid #F4D1B1;
+  border-radius:10px;
+  resize:none;
+}
+
+#campo-nome-amado{
+  border:1px solid #F4D1B1;
+  border-radius:10px;
+}
+/* ===== 03 — CAMPOS pessoa amada ===== */
+
+/* ===== 04 — TEXTOS ===== */
+
+#frase-exibida,
+#nome-amado-exibido{
+  width:90%;
+  max-width:320px;
+  margin:15px auto;
+  box-sizing:border-box;
+  text-align:center;
+  font-family:'Cormorant Garamond', serif;
+  font-weight:normal;
+  color:#8A6E78;
+  white-space:normal;
+  overflow-wrap:break-word;
+  word-wrap:break-word;
+}
+
+#frase-exibida{
+  font-size:18px;
+}
+
+#nome-amado-exibido{
+  font-size:54px;
+  display:none !important;
+}
+
+/* ===== Esconde a frase temporáriamente ===== */
+#nome-amado-exibido{
+  display:none !important;
+}
+/* ===== Esconde a frase temporáriamente ===== */
+
+
+
+
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- ===== BARRA SUPERIOR ===== -->
+  <div class="barra-topo">
+    <h1>Frase</h1>
+  </div>
+
+  <!-- ===== SEPARADOR ===== -->
+<hr class="separador-barra">
+<!-- ===== SEPARADOR ===== -->
+
+  <!-- ===== CONTEÚDO DA PÁGINA ===== -->
+
+<!-- ===== FRASE ===== -->
+
+<div class="frase-container">
+
+  <!-- Botão inicial -->
+  <button id="btn-adicionar-frase">
+    Adicionar frase
+  </button>
+
+  <!-- Área de edição -->
+  <div id="area-frase" style="display:none;">
+
+    <textarea
+      id="campo-frase"
+      placeholder="Digite sua frase..."
+    ></textarea>
+
+    <button id="btn-salvar-frase">
+      Salvar
+    </button>
+
+  </div>
+
+  <!-- Frase salva -->
+  <div
+    id="frase-exibida"
+    style="display:none;"
+  ></div>
+
+
+  <!-- Botão editar -->
+  <button
+    id="btn-editar-frase"
+    style="display:none;"
+  >
+    Editar
+  </button>
+
+<button
+  id="btn-limpar-frase"
+  style="display:none;"
+>
+  Limpar
+</button>
+
+</div>
+
+<!-- ===== NOME DA PESSOA AMADA ===== -->
+
+<div class="nome-amado-container">
+
+  <button id="btn-adicionar-nome-amado">
+    Pessoa amada
+  </button>
+
+  <div id="area-nome-amado" style="display:none;">
+
+    <input
+      type="text"
+      id="campo-nome-amado"
+      placeholder="Digite o nome..."
+    >
+
+    <button id="btn-salvar-nome-amado">
+      Salvar
+    </button>
+
+  </div>
+
+
+
+  <div
+    id="nome-amado-exibido"
+  style="display:none;"
+  ></div>
+
+
+  <button
+    id="btn-editar-nome-amado"
+    style="display:none;"
+  >
+     Pessoa amada
+  </button>
+
+</div>
+
+
+
+ 
+  <!-- ===== BOTÃO VOLTAR ===== -->
+  <a href="configuracao.html" class="botao-voltar">•••</a>
+
+
+
+  <script>
+/* ===== CONTROLE DA FRASE ===== 1 */
+
+const btnAdicionar =
+  document.getElementById("btn-adicionar-frase");
+
+const areaFrase =
+  document.getElementById("area-frase");
+
+const campoFrase =
+  document.getElementById("campo-frase");
+
+const btnSalvar =
+  document.getElementById("btn-salvar-frase");
+
+const btnLimpar =
+  document.getElementById("btn-limpar-frase");
+
+const fraseExibida =
+  document.getElementById("frase-exibida");
+
+const btnEditar =
+  document.getElementById("btn-editar-frase");
+
+
+/* ===== ABRIR CAMPO ===== */
+
+btnAdicionar.addEventListener("click", function(){
+
+  btnAdicionar.style.display = "none";
+  areaFrase.style.display = "block";
+  btnLimpar.style.display = "block";
+
+  campoFrase.focus();
+
+});
+
+
+/* ===== SALVAR FRASE ===== */
+
+btnSalvar.addEventListener("click", function(){
+
+  const frase =
+    campoFrase.value.trim();
+
+/* ===== SALVAR sem vasio ===== */
+localStorage.setItem(
+  "fraseUsuario",
+  frase
+);
+/* ===== SALVAR sem vazio ===== */
+
+
+
+  fraseExibida.innerText = frase;
+
+  areaFrase.style.display = "none";
+  btnLimpar.style.display = "none";
+
+  fraseExibida.style.display = "block";
+  btnEditar.style.display = "block";
+
+});
+
+
+/* ===== EDITAR FRASE ===== */
+
+btnEditar.addEventListener("click", function(){
+
+  campoFrase.value =
+    fraseExibida.innerText;
+
+  fraseExibida.style.display = "none";
+  btnEditar.style.display = "none";
+
+  areaFrase.style.display = "block";
+  btnLimpar.style.display = "block";
+
+  campoFrase.focus();
+
+});
+
+
+/* ===== CARREGAR FRASE SALVA ===== */
+
+const fraseSalva =
+  localStorage.getItem("fraseUsuario");
+
+if(fraseSalva){
+
+  fraseExibida.innerText =
+    fraseSalva;
+
+  btnAdicionar.style.display = "none";
+  areaFrase.style.display = "none";
+  btnLimpar.style.display = "none";
+
+  fraseExibida.style.display = "block";
+  btnEditar.style.display = "block";
+
+}
+</script>
+
+
+
+
+<script>
+/* ===== LIMPAR CAMPO DA FRASE ===== 2 */
+
+document.getElementById("btn-limpar-frase").onclick = function(){
+
+  document.getElementById("campo-frase").value = "";
+
+  document.getElementById("campo-frase").focus();
+
+};
+</script>
+
+
+
+<script>
+/* ===== CONTROLE DO NOME DA PESSOA AMADA ===== 3 */
+
+const btnAdicionarNome =
+  document.getElementById("btn-adicionar-nome-amado");
+
+const areaNome =
+  document.getElementById("area-nome-amado");
+
+const campoNome =
+  document.getElementById("campo-nome-amado");
+
+const btnSalvarNome =
+  document.getElementById("btn-salvar-nome-amado");
+
+const nomeExibido =
+  document.getElementById("nome-amado-exibido");
+
+const btnEditarNome =
+  document.getElementById("btn-editar-nome-amado");
+
+
+/* ===== ABRIR CAMPO ===== */
+
+btnAdicionarNome.addEventListener("click", function(){
+
+  btnAdicionarNome.style.display = "none";
+  areaNome.style.display = "block";
+
+  campoNome.focus();
+
+});
+
+
+/* ===== SALVAR NOME ===== */
+
+btnSalvarNome.addEventListener("click", function(){
+
+  const nome =
+    campoNome.value.trim();
+
+
+  /* ===== SALVAR VAZIO ===== */
+
+  if(!nome){
+
+    localStorage.removeItem(
+      "nomePessoaAmada"
+    );
+
+    campoNome.value = "";
+
+    areaNome.style.display = "none";
+    nomeExibido.style.display = "none";
+    btnEditarNome.style.display = "none";
+
+    btnAdicionarNome.style.display = "block";
+
+    return;
+  }
+
+
+  /* ===== SALVAR NOME PREENCHIDO ===== */
+
+  localStorage.setItem(
+    "nomePessoaAmada",
+    nome
+  );
+
+ nomeExibido.innerText =
+  "❤️ " + nome;
+
+  areaNome.style.display = "none";
+  nomeExibido.style.display = "block";
+  btnEditarNome.style.display = "block";
+
+});
+
+
+/* ===== EDITAR NOME ===== */
+
+btnEditarNome.addEventListener("click", function(){
+
+  campoNome.value =
+  nomeExibido.innerText.replace(/^❤️\s*/, "");
+
+  nomeExibido.style.display = "none";
+  btnEditarNome.style.display = "none";
+
+  areaNome.style.display = "block";
+
+  campoNome.focus();
+
+});
+
+
+/* ===== CARREGAR NOME SALVO ===== */
+
+const nomeSalvo =
+  localStorage.getItem("nomePessoaAmada");
+
+if(nomeSalvo){
+
+  nomeExibido.innerText =
+    nomeSalvo;
+
+  btnAdicionarNome.style.display = "none";
+  areaNome.style.display = "none";
+
+  nomeExibido.style.display = "block";
+  btnEditarNome.style.display = "block";
+
+}else{
+
+  btnAdicionarNome.style.display = "block";
+  areaNome.style.display = "none";
+  nomeExibido.style.display = "none";
+  btnEditarNome.style.display = "none";
+
+}
+</script>
+
+
+
+
+</body>
+
+</html>
