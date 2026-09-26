@@ -22,6 +22,8 @@
     }
 
 
+
+
 /* ===== BARRA SUPERIOR ===== */
 .barra-topo{
   display:flex;
@@ -49,7 +51,6 @@
   object-fit:contain;
 }
 /* ===== BARRA SUPERIOR ===== */
-
 
 
 /* ===== LINHA BRANCA SEPARADORA ===== */
@@ -88,7 +89,7 @@
     .conteudo-sobre h2{
       font-family:'Cormorant Garamond', serif;
       font-size:18px; /* ===== Sobre o Te encontei ===== */
-      color:#3A2530;   /* ===== cor todos os titulos frase salmon===== */
+      color:#F4A28C;   /* ===== cor todos os titulos frase salmon===== */
       margin:25px 0 10px;
     }
 
@@ -116,14 +117,25 @@
       color:#F4A28C;
     }
 
-    .slogan{
-      font-family:'Cormorant Garamond', serif;
-      font-size:12px;    /* =====Te encontei +Q que um buqu  ===== */
-      font-weight:bold;
-      text-align:center;
-      color:#F4A28C;
-      margin:25px 0 15px; /* ===== Distancia em relação a inha de cima===== */
-    }
+       /* Frase/slogan */
+.frase-surpreenda{
+  margin:0;
+  color:#F4A28C;
+  font-family:'Cormorant Garamond', serif;
+  font-size:14px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.slogan{
+  margin:0 0 15px;
+  font-family:'Cormorant Garamond', serif;
+  font-size:12px;
+  font-weight:bold;
+  text-align:center;
+  color:#F4A28C;
+}
+/* Frase/slogan */
 
 /* ===== CORAÇÃO PULSANTE — SOBRE ===== */
 
@@ -145,6 +157,22 @@
 /* ===== FIM — CORAÇÃO PULSANTE ===== */
 
 
+/* ===== MARCA D'ÁGUA ===== */
+#marca-dagua{
+  position:fixed;
+  top:12%;  /* ===== acima ou abaixo ===== */
+  right:2%;  /* ===== distância da direita ===== */
+  transform:rotate(-15deg);
+
+  width:100px;   /* ===== Tamanho===== */
+  opacity:0.09;  /* ===== Opacidade + ou menos===== */
+
+  pointer-events:none;
+  z-index:0;
+}
+/* ===== MARCA D'ÁGUA ===== */
+
+
 
   </style>
 
@@ -156,15 +184,16 @@
 <!-- ===== BARRA SUPERIOR ===== -->
 <div class="barra-topo">
   <h1>Aplicatico Te Encontrei</h1>
-  <img src="data:image/png;base64,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" 
-  id="logo-barra-topo" alt="Logo">
 </div>
-<!-- ===== BARRA SUPERIOR ===== -->
 
 
 <!-- ===== SEPARADOR ===== -->
 <hr class="separador-barra">
 <!-- ===== SEPARADOR ===== -->
+
+<!-- ===== MARCA D'ÁGUA ===== -->
+<img src="data:image/png;base64,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" id="marca-dagua" alt="Logo">
+<!-- ===== MARCA D'ÁGUA ===== -->
 
   <!-- ===== CONTEÚDO DA PÁGINA ===== -->
 
@@ -189,19 +218,15 @@
 
     <h2>💕 Um aplicativo feito para vocês</h2>
 
-    <p>
+  <p>
       No Te Encontrei, cada detalhe pode ser personalizado para representar
-      o casal.
-    </p>
+      o casal.<br>
 
-    <p>
       Você pode registrar o perfil, escolher uma imagem, escrever uma frase
-      especial, definir a data importante e acompanhar a passagem do tempo.
-    </p>
+      especial, definir a data importante e acompanhar a passagem do tempo.<br>
 
-    <p>
       O aplicativo também acompanha o momento vivido pelo casal:
-      <strong>Namorados → Noivos → Casados</strong>.
+      <strong>Namorados → Noivos → Casados</strong>.<br>
     </p>
 
     <p>
@@ -212,10 +237,10 @@
 
     <h2>⏳ O tempo também conta uma história</h2>
 
-    <p>
+   <p>
       Uma data importante pode parecer apenas um número.
       Mas quando o aplicativo mostra os dias, meses e anos que passaram desde
-      aquele momento, a data ganha outro significado.
+      aquele momento, a data ganha outro significado.<br>
     </p>
 
     <p>
@@ -231,61 +256,55 @@
 
     <p>
       O Te Encontrei foi pensado para que a experiência não seja apenas
-      funcional.
-    </p>
+      funcional.<br>
 
-    <p>
       As alianças, os efeitos visuais, as frases, as imagens e as informações
       do relacionamento trabalham juntos para criar uma experiência mais
-      pessoal.
-    </p>
+      pessoal.<br>
 
-    <p>
       Cada elemento tem um propósito:
       <strong>fazer o aplicativo parecer de vocês.</strong>
     </p>
 
 
     <h2>📱 Feito para acompanhar a vida real</h2>
-
     <p>
       O aplicativo foi pensado para ser simples de usar e fácil de
-      personalizar.
-    </p>
+      personalizar.<br>
 
-    <p>
       As principais funções ficam organizadas em uma área de configurações,
       onde cada parte da experiência pode ser ajustada conforme a história
-      do casal.
-    </p>
+      do casal.<br>
 
-    <p>
       Assim, o Te Encontrei pode acompanhar diferentes momentos da vida e
       continuar fazendo sentido à medida que a história evolui.
+     </p>
+
+
+    <h2>🌹 Um espaço reservado ao casal</h2>
+    <p>
+    A aba "Estou Aqui” é um cantinho especial, reservado ao cuidado mútuo do casal.<br>
+
+    Um espaço criado para aquele pequeno gesto que diz muito, mesmo sem precisar dizer quase nada.<br>
+
+    Talvez você descubra que algumas formas de cuidar podem ser mais especiais do que parecem.
     </p>
+
 
 
     <h2>❤️ Mais do que um aplicativo</h2>
 
-    <p>
-      Existem aplicativos para organizar tarefas, guardar informações e
-      acompanhar números.
-    </p>
+     <p>
+      O amor começa com um encontro.<br>
 
-    <p>
-      O Te Encontrei nasceu para fazer algo diferente:
-      <strong>guardar significado.</strong>
-    </p>
+      Depois vêm as conversas, os momentos, os planos, as conquistas e todas
+      aquelas pequenas coisas que passam a fazer parte da vida.<br>
 
-    <p>
-      Porque uma fotografia pode registrar um momento.
-      Uma data pode registrar um começo.
-      Uma frase pode registrar um sentimento.
-    </p>
+      O Te Encontrei existe para acompanhar essa caminhada.<br>
 
-    <p>
-      Mas quando tudo isso se reúne em um só lugar, nasce uma pequena
-      representação da história de duas pessoas.
+      Porque encontrar alguém especial é apenas o começo.<br>
+
+      O mais bonito é tudo aquilo que vocês constroem depois de se encontrar.
     </p>
 
 
@@ -297,27 +316,23 @@
 
     <p>
       Depois vêm as conversas, os momentos, os planos, as conquistas e todas
-      aquelas pequenas coisas que passam a fazer parte da vida.
-    </p>
+      aquelas pequenas coisas que passam a fazer parte da vida.<br>
 
-    <p>
-      O Te Encontrei existe para acompanhar essa caminhada.
-    </p>
+      O Te Encontrei existe para acompanhar essa caminhada.<br>
 
-    <p>
-      Porque encontrar alguém especial é apenas o começo.
-    </p>
+      Porque encontrar alguém especial é apenas o começo.<br>
 
-    <p>
       O mais bonito é tudo aquilo que vocês constroem depois de se encontrar.
     </p>
 
 
-<div class="slogan">
-  Surpreenda a pessoa que você ama<br>
-  “Te Encontrei é +Q um buquê de flores todos os dias”
+<div class="frase-surpreenda">
+  Surpreenda a pessoa que você ama!
 </div>
 
+<div class="slogan">
+  “Te Encontrei é +Q um buquê de flores todos os dias”
+</div>
 
   </div>
   
